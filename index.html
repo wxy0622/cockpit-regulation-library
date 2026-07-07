@@ -3155,6 +3155,39 @@ html,body{
     max-height:55vh;
   }
 }
+/* Large displays: always fill the viewport; increase type without shrinking width. */
+@media (min-width:1800px){
+  .app{
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    zoom:1;
+  }
+  body,button,input,select{font-size:13px}
+  .nav-btn{font-size:14px}
+  .page-head h2{font-size:26px}
+  .filter-dropdown summary,
+  .icon-filter-dropdown summary,
+  #view-icons .icon-filter-panel .search-box{font-size:13px}
+  .rule-row h3,
+  .icon-card h3,
+  #view-icons .large-mode .icon-large-content h3{font-size:15px}
+  .tag,.rule-summary,.icon-source,.icon-large-summary,
+  .icon-large-original,.icon-large-fact b,.term-item{font-size:11px}
+  .detail-title h3{font-size:21px}
+}
+@media (min-width:2400px){
+  body,button,input,select{font-size:14px}
+  .nav-btn{font-size:16px}
+  .filter-dropdown summary,
+  .icon-filter-dropdown summary,
+  #view-icons .icon-filter-panel .search-box{font-size:14px}
+  .rule-row h3,
+  .icon-card h3,
+  #view-icons .large-mode .icon-large-content h3{font-size:16px}
+  .tag,.rule-summary,.icon-source,.icon-large-summary,
+  .icon-large-original,.icon-large-fact b,.term-item{font-size:12px}
+}
 </style></head><body>
 <div class="app">
 <aside class="sidebar">
