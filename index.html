@@ -2685,16 +2685,486 @@ html,body{
     min-height:240px;
   }
 }
+/* Compact dropdown filters. */
+#view-rules .filter-panel.horizontal-filter-panel{
+  padding:11px 14px 13px;
+}
+#view-rules .horizontal-filter-panel .filter-panel-head{
+  margin-bottom:9px;
+}
+#view-rules .horizontal-filter-panel #filters{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:8px;
+  overflow:visible;
+}
+#view-rules .horizontal-filter-panel #filters .filter-dropdown,
+#view-rules .horizontal-filter-panel #filters .filter-dropdown:first-child{
+  position:relative;
+  padding:0;
+  border:0;
+  min-width:0;
+}
+#view-rules .filter-dropdown summary{
+  min-height:38px;
+  padding:0 10px;
+  border:1px solid var(--line-2);
+  border-radius:8px;
+  background:#fff;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  align-items:center;
+  gap:7px;
+  cursor:pointer;
+  list-style:none;
+  color:#465468;
+  font-size:11px;
+}
+#view-rules .filter-dropdown summary::-webkit-details-marker{
+  display:none;
+}
+#view-rules .filter-dropdown summary>span{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  font-weight:700;
+}
+#view-rules .filter-dropdown summary>em{
+  padding:2px 6px;
+  border-radius:999px;
+  background:#f0f4f8;
+  color:var(--muted);
+  font-size:9px;
+  font-style:normal;
+  white-space:nowrap;
+}
+#view-rules .filter-dropdown summary>i{
+  color:#8492a5;
+  font-size:13px;
+  font-style:normal;
+  transition:.16s;
+}
+#view-rules .filter-dropdown[open] summary{
+  border-color:#7caed3;
+  box-shadow:0 0 0 3px rgba(47,126,184,.09);
+}
+#view-rules .filter-dropdown[open] summary>i{
+  transform:rotate(180deg);
+}
+#view-rules .horizontal-filter-panel #filters .filter-dropdown>.filter-options,
+#view-rules .horizontal-filter-panel #filters .displayObligation-filter>.filter-options,
+#view-rules .horizontal-filter-panel #filters .regulationEffect-filter>.filter-options,
+#view-rules .horizontal-filter-panel #filters .durationRule-filter>.filter-options,
+#view-rules .horizontal-filter-panel #filters .spaceStrategy-filter>.filter-options,
+#view-rules .horizontal-filter-panel #filters .owner-filter>.filter-options{
+  position:absolute;
+  z-index:120;
+  top:calc(100% + 6px);
+  left:0;
+  width:max(100%,250px);
+  max-height:330px;
+  overflow-y:auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:5px;
+  padding:9px;
+  border:1px solid var(--line-2);
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 12px 30px rgba(22,50,79,.18);
+}
+#view-rules .horizontal-filter-panel #filters .domain-filter>.filter-options{
+  position:absolute;
+  z-index:120;
+  top:calc(100% + 6px);
+  right:0;
+  left:auto;
+  width:max(100%,340px);
+  max-height:330px;
+  overflow-y:auto;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:5px;
+  padding:9px;
+  border:1px solid var(--line-2);
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 12px 30px rgba(22,50,79,.18);
+}
+#view-rules .filter-dropdown:not([open])>.filter-options{
+  display:none!important;
+}
+#view-rules .horizontal-filter-panel #filters .filter-dropdown .filter-chip{
+  width:100%;
+  min-height:32px;
+}
+@media (max-width:1320px){
+  #view-rules .horizontal-filter-panel #filters{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media (max-width:700px){
+  #view-rules .horizontal-filter-panel #filters{
+    grid-template-columns:1fr 1fr;
+  }
+  #view-rules .horizontal-filter-panel #filters .filter-dropdown>.filter-options,
+  #view-rules .horizontal-filter-panel #filters .domain-filter>.filter-options{
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    left:16px;
+    top:auto;
+    width:auto;
+    max-height:55vh;
+  }
+}
+/* Preserve readable physical size on high-resolution desktop displays. */
+@media (min-width:1800px){
+  .app{
+    width:calc(100% / 1.1);
+    height:calc(100dvh / 1.1);
+    zoom:1.1;
+  }
+}
+@media (min-width:2400px){
+  .app{
+    width:calc(100% / 1.2);
+    height:calc(100dvh / 1.2);
+    zoom:1.2;
+  }
+}
+@media (min-width:3200px){
+  .app{
+    width:calc(100% / 1.32);
+    height:calc(100dvh / 1.32);
+    zoom:1.32;
+  }
+}
+/* Icon library: uncropped artwork, denser large cards, shared filter language. */
+#view-icons .icon-image{
+  height:150px;
+  padding:6px;
+  background:#f8fafc;
+}
+#view-icons .icon-image img,
+#view-icons .large-mode .icon-image img{
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center;
+  transform:none;
+}
+.icon-filter-panel{
+  margin-bottom:16px;
+  padding:12px 14px 14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+}
+.icon-filter-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:10px;
+}
+.icon-filter-head>b{
+  font-size:13px;
+}
+#view-icons .icon-filter-panel .icon-toolbar{
+  display:grid;
+  grid-template-columns:minmax(220px,1.35fr) repeat(6,minmax(125px,1fr));
+  gap:8px;
+  margin:0;
+}
+#view-icons .icon-filter-panel .search-box,
+#view-icons .icon-filter-panel .select-box{
+  width:100%;
+  min-width:0;
+  height:38px;
+  border:1px solid var(--line-2);
+  border-radius:8px;
+  background:#fff;
+  color:#465468;
+  font-size:11px;
+  padding:0 10px;
+}
+#view-icons .icon-filter-panel .native-icon-filter{
+  display:none;
+}
+#iconFilterDropdowns{
+  display:contents;
+}
+.icon-filter-dropdown{
+  position:relative;
+  min-width:0;
+}
+.icon-filter-dropdown summary{
+  width:100%;
+  min-height:38px;
+  padding:0 10px;
+  border:1px solid var(--line-2);
+  border-radius:8px;
+  background:#fff;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  align-items:center;
+  gap:7px;
+  color:#465468;
+  cursor:pointer;
+  list-style:none;
+  font-size:11px;
+}
+.icon-filter-dropdown summary::-webkit-details-marker{
+  display:none;
+}
+.icon-filter-dropdown summary>span{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  font-weight:700;
+}
+.icon-filter-dropdown summary>em{
+  padding:2px 6px;
+  border-radius:999px;
+  background:#f0f4f8;
+  color:var(--muted);
+  font-size:9px;
+  font-style:normal;
+  white-space:nowrap;
+}
+.icon-filter-dropdown summary>i{
+  color:#8492a5;
+  font-size:13px;
+  font-style:normal;
+  transition:.16s;
+}
+.icon-filter-dropdown[open] summary{
+  border-color:#7caed3;
+  box-shadow:0 0 0 3px rgba(47,126,184,.09);
+}
+.icon-filter-dropdown[open] summary>i{
+  transform:rotate(180deg);
+}
+.icon-filter-dropdown>.icon-filter-options{
+  position:absolute;
+  z-index:130;
+  top:calc(100% + 6px);
+  left:0;
+  width:max(100%,250px);
+  max-height:330px;
+  overflow-y:auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:5px;
+  padding:9px;
+  border:1px solid var(--line-2);
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 12px 30px rgba(22,50,79,.18);
+}
+.icon-filter-dropdown:not([open])>.icon-filter-options{
+  display:none;
+}
+.icon-filter-option{
+  width:100%;
+  min-height:32px;
+  padding:5px 7px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:#fff;
+  color:#536174;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:7px;
+  text-align:left;
+  font-size:10px;
+}
+.icon-filter-option:hover,
+.icon-filter-option.active{
+  border-color:#8eb6d7;
+  background:var(--blue-soft);
+  color:#1d5f96;
+}
+.icon-filter-option em{
+  padding:1px 5px;
+  border-radius:999px;
+  background:#f0f3f7;
+  color:#7a8797;
+  font-size:8px;
+  font-style:normal;
+}
+/* Guide hierarchy: workflow first, reference material on demand. */
+#view-terms .terms-grid{
+  display:block;
+}
+.quick-start-section{
+  margin-bottom:14px;
+}
+.quick-start-section .term-list{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.guide-reference{
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  overflow:hidden;
+}
+.guide-reference>summary{
+  min-height:58px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  cursor:pointer;
+  list-style:none;
+  font-size:13px;
+  font-weight:700;
+}
+.guide-reference>summary::-webkit-details-marker{
+  display:none;
+}
+.guide-reference>summary span{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:400;
+}
+.guide-reference>summary:after{
+  content:'⌄';
+  color:#8492a5;
+  font-size:15px;
+  transition:.16s;
+}
+.guide-reference[open]>summary{
+  border-bottom:1px solid var(--line);
+}
+.guide-reference[open]>summary:after{
+  transform:rotate(180deg);
+}
+.guide-reference-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  padding:14px;
+  background:#f7f9fb;
+}
+@media (max-width:1100px){
+  .quick-start-section .term-list{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media (max-width:700px){
+  .quick-start-section .term-list,
+  .guide-reference-grid{
+    grid-template-columns:1fr;
+  }
+}
+#view-icons .icon-filter-panel .search-box:focus,
+#view-icons .icon-filter-panel .select-box:focus{
+  border-color:#7caed3;
+  box-shadow:0 0 0 3px rgba(47,126,184,.09);
+  outline:0;
+}
+#view-icons .large-mode .icon-card{
+  grid-template-columns:160px minmax(0,1fr);
+  min-height:248px;
+  gap:16px;
+}
+#view-icons .large-mode .icon-image{
+  width:160px;
+  height:216px;
+  min-height:0;
+  padding:8px;
+  align-self:start;
+}
+.icon-large-facts{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-top:7px;
+}
+.icon-large-fact{
+  min-width:0;
+  padding:7px 8px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:#f8fafc;
+}
+.icon-large-fact span{
+  display:block;
+  margin-bottom:2px;
+  color:var(--muted);
+  font-size:9px;
+}
+.icon-large-fact b{
+  display:block;
+  color:#37465a;
+  font-size:10px;
+  line-height:1.35;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.icon-large-original{
+  margin:7px 0 0;
+  padding:8px 9px;
+  border-left:3px solid #e2b44d;
+  border-radius:0 7px 7px 0;
+  background:#fff9ea;
+  color:#596678;
+  font-size:10px;
+  line-height:1.55;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+@media (max-width:1500px){
+  #view-icons .icon-filter-panel .icon-toolbar{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+}
+@media (max-width:900px){
+  #view-icons .icon-filter-panel .icon-toolbar{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media (max-width:620px){
+  #view-icons .icon-filter-panel .icon-toolbar{
+    grid-template-columns:1fr;
+  }
+  #view-icons .large-mode .icon-card{
+    grid-template-columns:1fr;
+  }
+  #view-icons .large-mode .icon-image{
+    width:100%;
+    height:220px;
+  }
+  .icon-filter-dropdown>.icon-filter-options{
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    left:16px;
+    top:auto;
+    width:auto;
+    max-height:55vh;
+  }
+}
 </style></head><body>
 <div class="app">
 <aside class="sidebar">
 <div class="brand"><div class="brand-mark">规</div><div><h1>智能座舱法规<br/>设计知识库</h1></div></div>
 <nav class="nav">
 <button class="nav-btn active" data-view="home"><span class="nav-ico"></span><span>首页</span></button>
-<button class="nav-btn" data-view="terms"><span class="nav-ico"></span><span>使用指南</span></button>
 <button class="nav-btn" data-view="rules"><span class="nav-ico"></span><span>设计规则库</span></button>
-<button class="nav-btn" data-view="regulations"><span class="nav-ico"></span><span>法规原文库</span></button>
 <button class="nav-btn" data-view="icons"><span class="nav-ico"></span><span>标准图标库</span></button>
+<button class="nav-btn" data-view="regulations"><span class="nav-ico"></span><span>法规原文库</span></button>
+<button class="nav-btn" data-view="terms"><span class="nav-ico"></span><span>使用指南</span></button>
 </nav>
 <div class="side-meta" id="sideMeta"><b>知识库状态</b><br/>正在加载数据…</div>
 </aside>
@@ -2740,7 +3210,7 @@ html,body{
 </section>
 <section class="view" id="view-icons">
 <div class="page-head"><div><h2>标准图标库</h2></div><div class="count-pill" id="iconCountPill"></div></div>
-<div class="icon-toolbar"><input class="search-box" id="iconSearch" placeholder="搜索图标或功能"/><select class="select-box" id="iconRegulation"></select><select class="select-box" id="iconDisplay"></select><select class="select-box" id="iconDuration"></select><select class="select-box" id="iconSpace"></select><select class="select-box" id="iconColor"></select><select class="select-box" id="iconDomain"></select><div class="icon-view-toggle" aria-label="图标库显示模式"><button class="active" data-icon-view="small" type="button">小图模式</button><button data-icon-view="large" type="button">大图模式</button></div></div>
+<div class="icon-filter-panel"><div class="icon-filter-head"><b>筛选条件</b><div class="icon-view-toggle" aria-label="图标库显示模式"><button class="active" data-icon-view="small" type="button">小图模式</button><button data-icon-view="large" type="button">大图模式</button></div></div><div class="icon-toolbar"><input class="search-box" id="iconSearch" placeholder="搜索图标或功能"/><select class="native-icon-filter" id="iconRegulation"></select><select class="native-icon-filter" id="iconDisplay"></select><select class="native-icon-filter" id="iconDuration"></select><select class="native-icon-filter" id="iconSpace"></select><select class="native-icon-filter" id="iconColor"></select><select class="native-icon-filter" id="iconDomain"></select><div id="iconFilterDropdowns"></div></div></div>
 <div class="icon-grid" id="iconGrid"></div>
 </section>
 <section class="view" id="view-terms">
@@ -3052,13 +3522,14 @@ function renderDecisionOverview(){
 function initFilters(){
   const renderGroup=d=>{
     const options=filterOptions(d);
-    return `<div class="filter-group ${d.key}-filter"><h4>${esc(d.label)}</h4><div class="filter-options">${options.map(o=>{
+    return `<details class="filter-group filter-dropdown ${d.key}-filter"><summary><span>${esc(d.label)}</span><em data-filter-summary="${d.key}">全部</em><i>⌄</i></summary><div class="filter-options">${options.map(o=>{
       const count=DESIGN_RULES.filter(o.match).length;
       return `<button class="filter-chip" data-filter="${d.key}" data-value="${esc(o.value)}"><span>${esc(o.label)}</span><em>${count}</em></button>`
-    }).join('')}</div></div>`
+    }).join('')}</div></details>`
   };
   $('#filters').innerHTML=filterDefs.map(renderGroup).join('');
-  $('#filters').onclick=e=>{const b=e.target.closest('.filter-chip');if(!b)return;const set=state.filters[b.dataset.filter],v=b.dataset.value;set.has(v)?set.delete(v):set.add(v);renderRules()};
+  $$('#filters .filter-dropdown').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)$$('#filters .filter-dropdown').forEach(other=>{if(other!==d)other.open=false})}));
+  $('#filters').onclick=e=>{const b=e.target.closest('.filter-chip');if(!b)return;e.preventDefault();const set=state.filters[b.dataset.filter],v=b.dataset.value;set.has(v)?set.delete(v):set.add(v);renderRules()};
   const localSearch=$('#ruleFilterSearch');
   if(localSearch){
     localSearch.value=state.search||$('#globalSearch').value||'';
@@ -3066,6 +3537,9 @@ function initFilters(){
   }
   $('#clearFilters').onclick=()=>{clearFilterState();state.search='';$('#globalSearch').value='';if(localSearch)localSearch.value='';renderRules()};
   $('#sortSelect').value=state.sort;$('#sortSelect').onchange=e=>{state.sort=e.target.value;renderRules()};
+}
+function renderFilterSummaries(){
+  filterDefs.forEach(d=>{const el=document.querySelector(`[data-filter-summary="${d.key}"]`),count=state.filters[d.key]?.size||0;if(el)el.textContent=count?`已选 ${count}`:'全部'});
 }
 function filteredRules(){
   const q=normalize(state.search||$('#globalSearch').value);let arr=DESIGN_RULES.filter(r=>{if(state.onlyFavorites&&!state.favorites.has(r.id))return false;if(q&&!ruleHaystack(r).includes(q))return false;return filterDefs.every(d=>filterDefMatches(r,d,state.filters[d.key]))});
@@ -3082,6 +3556,7 @@ function renderRules(){
   const localSearch=$('#ruleFilterSearch');if(localSearch&&document.activeElement!==localSearch)localSearch.value=state.search||$('#globalSearch').value||'';
   const selectedCount=filterDefs.reduce((sum,d)=>sum+(state.filters[d.key]?.size||0),0);const activeCount=$('#activeFilterCount');if(activeCount)activeCount.textContent=state.onlyFavorites?'仅看收藏':(selectedCount?`已选 ${selectedCount} 项`:'');
   $$('.filter-chip').forEach(b=>b.classList.toggle('active',state.filters[b.dataset.filter]?.has(b.dataset.value)));
+  renderFilterSummaries();
   if(!arr.length){$('#ruleList').innerHTML='<div class="empty-state">没有找到匹配规则，请调整关键词或筛选条件。</div>';$('#detailPanel').innerHTML='<div class="empty-detail">暂无可显示的规则</div>';return}
   if(!state.selectedRule||!arr.some(r=>r.id===state.selectedRule))state.selectedRule=arr[0].id;
   $('#ruleList').innerHTML=arr.map(r=>{const s=primarySource(r);return `<article class="rule-item ${r.id===state.selectedRule?'active':''}" data-id="${r.id}"><div class="rule-icon">${iconHTML(r)}</div><div class="rule-main"><div class="rule-row"><h3>${esc(r.name)}</h3><button class="source-link" data-open-source="${s?.id||''}">查看原文 ↗</button></div><div class="rule-source-full">${esc(sourceLabel(s))}</div><div class="meta-line">${ruleMetaHTML(r)}</div><div class="rule-summary">${highlightRegText(ruleSummaryText(r))}</div></div></article>`}).join('');
@@ -3145,16 +3620,31 @@ function initIcons(){
   $('#iconSpace').innerHTML=options([...new Set(SYMBOLS.map(s=>s.spaceStrategy).filter(v=>v&&v!=='/'))],'全部空间策略');
   $('#iconColor').innerHTML=options([...new Set(SYMBOLS.map(s=>s.color).filter(v=>v&&v!=='/'))],'全部颜色');
   $('#iconDomain').innerHTML=options([...new Set(SYMBOLS.map(s=>s.domain))],'全部功能');
+  const dropdownDefs=[
+    ['iconRegulation','法规来源',(s,v)=>ruleRegulations(ruleById(s.ruleIds[0])).includes(v)],
+    ['iconDisplay','显示义务',(s,v)=>s.displayObligation===v],
+    ['iconDuration','持续规则',(s,v)=>s.durationRule===v],
+    ['iconSpace','空间策略',(s,v)=>s.spaceStrategy===v],
+    ['iconColor','颜色',(s,v)=>s.color===v],
+    ['iconDomain','功能分类',(s,v)=>s.domain===v]
+  ];
+  $('#iconFilterDropdowns').innerHTML=dropdownDefs.map(([id,label,match])=>{const select=$(`#${id}`),items=[...select.options].map(o=>{const count=o.value?SYMBOLS.filter(s=>match(s,o.value)).length:SYMBOLS.length;return `<button class="icon-filter-option ${o.value?'':'active'}" type="button" data-icon-filter="${id}" data-value="${esc(o.value)}"><span>${esc(o.textContent)}</span><em>${count}</em></button>`}).join('');return `<details class="icon-filter-dropdown" data-icon-dropdown="${id}"><summary><span>${esc(label)}</span><em data-icon-filter-summary="${id}">全部</em><i>⌄</i></summary><div class="icon-filter-options">${items}</div></details>`}).join('');
+  $$('.icon-filter-dropdown').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)$$('.icon-filter-dropdown').forEach(other=>{if(other!==d)other.open=false})}));
+  $('#iconFilterDropdowns').onclick=e=>{const b=e.target.closest('[data-icon-filter]');if(!b)return;const select=$(`#${b.dataset.iconFilter}`);select.value=b.dataset.value;b.closest('details').open=false;renderIcons()};
   ['iconSearch','iconRegulation','iconDisplay','iconDuration','iconSpace','iconColor','iconDomain'].forEach(id=>{const el=$(`#${id}`);if(el)el.addEventListener(id==='iconSearch'?'input':'change',renderIcons)});renderIcons();
   $$('.icon-view-toggle [data-icon-view]').forEach(b=>b.onclick=()=>{state.iconView=b.dataset.iconView;safeStorage.set('reg-kb-icon-view',state.iconView);renderIcons()});
+}
+function renderIconFilterState(){
+  $$('.icon-filter-dropdown').forEach(d=>{const id=d.dataset.iconDropdown,select=$(`#${id}`),selected=select?.options[select.selectedIndex],summary=d.querySelector(`[data-icon-filter-summary="${id}"]`);if(summary)summary.textContent=select?.value?selected.textContent.replace(/^全部/,''):'全部';d.querySelectorAll('[data-icon-filter]').forEach(b=>b.classList.toggle('active',b.dataset.value===select?.value))});
 }
 function renderIcons(){
   const q=normalize($('#iconSearch')?.value),regId=$('#iconRegulation')?.value,display=$('#iconDisplay')?.value,duration=$('#iconDuration')?.value,space=$('#iconSpace')?.value,color=$('#iconColor')?.value,domain=$('#iconDomain')?.value;
   const arr=SYMBOLS.filter(s=>{const rule=ruleById(s.ruleIds[0]),regs=ruleRegulations(rule);return(!q||ruleHaystack(rule).includes(q))&&(!regId||regs.includes(regId))&&(!display||s.displayObligation===display)&&(!duration||s.durationRule===duration)&&(!space||s.spaceStrategy===space)&&(!color||s.color===color)&&(!domain||s.domain===domain)});
   $('#iconCountPill').textContent=`${arr.length} / ${SYMBOLS.length} 个图标`;
+  renderIconFilterState();
   const grid=$('#iconGrid');grid.classList.toggle('large-mode',state.iconView==='large');grid.classList.toggle('small-mode',state.iconView!=='large');
   $$('.icon-view-toggle [data-icon-view]').forEach(b=>b.classList.toggle('active',b.dataset.iconView===state.iconView));
-  grid.innerHTML=arr.map(s=>{const r=ruleById(s.ruleIds[0]),source=primarySource(r),relations=outgoingRelations(r.id);if(state.iconView==='large')return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><div class="icon-large-content"><div class="icon-large-domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</div><h3>${esc(s.name)}</h3><div class="icon-large-source">${esc(sourceLabel(source))}</div><div class="meta-line">${ruleMetaHTML(r)}</div><p class="icon-large-summary">${esc(r.check&&r.check!=='/'?r.check:(r.original||source?.sourceText||'暂无补充说明'))}</p><div class="icon-large-action">查看完整详情 · ${relations.length} 项关联 →</div></div></button>`;return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><h3>${esc(s.name)}</h3><div class="meta-line">${ruleMetaHTML(r)}</div><div class="icon-source">${esc(sourceLabel(source))} · ${relations.length} 项关联</div></button>`}).join('')||'<div class="empty-state">没有找到匹配图标。</div>';$$('[data-symbol]').forEach(b=>b.onclick=()=>openIconModal(b.dataset.symbol));
+  grid.innerHTML=arr.map(s=>{const r=ruleById(s.ruleIds[0]),source=primarySource(r),relations=outgoingRelations(r.id);if(state.iconView==='large')return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><div class="icon-large-content"><div class="icon-large-domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</div><h3>${esc(s.name)}</h3><div class="icon-large-source">${esc(sourceLabel(source))}</div><div class="meta-line">${ruleMetaHTML(r)}</div><div class="icon-large-facts"><div class="icon-large-fact"><span>法规效力</span><b>${esc(r.regulationEffect||'—')}</b></div><div class="icon-large-fact"><span>显示颜色</span><b>${esc(r.color||'—')}</b></div><div class="icon-large-fact"><span>持续规则</span><b>${esc(r.durationRule||'—')}</b></div><div class="icon-large-fact"><span>主责岗位</span><b>${esc(r.owner||'—')}</b></div></div><p class="icon-large-original">${highlightRegText(r.original||source?.sourceText||'暂无法规原文')}</p><p class="icon-large-summary">${highlightRegText(r.check&&r.check!=='/'?r.check:'暂无补充检查要点')}</p><div class="icon-large-action">查看完整详情 · ${relations.length} 项关联 →</div></div></button>`;return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><h3>${esc(s.name)}</h3><div class="meta-line">${ruleMetaHTML(r)}</div><div class="icon-source">${esc(sourceLabel(source))} · ${relations.length} 项关联</div></button>`}).join('')||'<div class="empty-state">没有找到匹配图标。</div>';$$('[data-symbol]').forEach(b=>b.onclick=()=>openIconModal(b.dataset.symbol));
 }
 function openRuleModal(ruleId,mode='rule'){const r=ruleById(ruleId);if(!r)return;$('#modalTitle').textContent=mode==='icon'?'标准图标详情':'规则条目详情';const root=$('#modalBody');root.innerHTML=`<div class="modal-rule-detail">${ruleDetailHTML(r,{modal:true,mode})}</div>`;$('#iconModal').classList.remove('hidden');bindRuleDetail(root,r,{modal:true,mode})}
 function openIconModal(id){
@@ -3216,7 +3706,9 @@ function initTerms(){
       ['跨法规综合判断','同一图标在其他法规中可能有更严格要求，最终结论应按全部适用法规综合。']
     ]}
   ];
-  $('#termsGrid').innerHTML=sections.map(s=>`<section class="term-section ${s.type}"><h3>${esc(s.title)}<span class="${s.type==='official'?'official-badge':'internal-badge'}">${esc(s.badge)}</span></h3><div class="term-list">${s.items.map(([k,v])=>`<div class="term-item"><b>${esc(k)}</b><p>${highlightRegText(v)}</p></div>`).join('')}</div></section>`).join('');
+  const renderSection=(s,extra='')=>`<section class="term-section ${s.type} ${extra}"><h3>${esc(s.title)}<span class="${s.type==='official'?'official-badge':'internal-badge'}">${esc(s.badge)}</span></h3><div class="term-list">${s.items.map(([k,v])=>`<div class="term-item"><b>${esc(k)}</b><p>${highlightRegText(v)}</p></div>`).join('')}</div></section>`;
+  const [quick,...reference]=sections;
+  $('#termsGrid').innerHTML=renderSection(quick,'quick-start-section')+`<details class="guide-reference"><summary><div>详细术语与判断依据<br><span>按需查看显示义务、法规效力、持续规则、空间策略和法规术语</span></div></summary><div class="guide-reference-grid">${reference.map(s=>renderSection(s)).join('')}</div></details>`;
 }
 const mainScroller=$('.main'),backToTop=$('#backToTop');
 if(mainScroller&&backToTop){
