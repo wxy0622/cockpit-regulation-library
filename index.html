@@ -2358,6 +2358,333 @@ html,body{
     display:none;
   }
 }
+/* Rules library: quick presets, horizontal filters, then two-column results. */
+#view-rules .quick-filter-title{
+  flex:none;
+  margin:0 0 7px;
+  font-size:13px;
+  line-height:1.3;
+}
+#view-rules .filter-panel.horizontal-filter-panel{
+  flex:none;
+  height:auto;
+  min-height:0;
+  margin-bottom:11px;
+  padding:12px 14px;
+  overflow:visible;
+}
+#view-rules .horizontal-filter-panel .filter-panel-head{
+  display:grid;
+  grid-template-columns:auto minmax(280px,440px) auto;
+  align-items:center;
+  gap:14px;
+  margin-bottom:10px;
+}
+#view-rules .horizontal-filter-panel .filter-title{
+  margin:0;
+}
+#view-rules .horizontal-filter-panel .filter-title button{
+  display:none;
+}
+#view-rules .horizontal-filter-panel .rule-filter-search{
+  height:34px;
+  margin:0;
+}
+#view-rules .horizontal-filter-panel .clear-filter-btn{
+  border:0;
+  background:transparent;
+  color:var(--blue);
+  font-size:11px;
+  white-space:nowrap;
+}
+#view-rules .horizontal-filter-panel #filters{
+  display:grid;
+  grid-template-columns:1.15fr .75fr 1.15fr 1.15fr 1.35fr .8fr;
+  gap:0 14px;
+  align-items:start;
+}
+#view-rules .horizontal-filter-panel #filters .filter-group,
+#view-rules .horizontal-filter-panel #filters .filter-group:first-child{
+  min-width:0;
+  padding:0;
+  border:0;
+}
+#view-rules .horizontal-filter-panel #filters .filter-group h4{
+  margin:0 0 6px;
+  font-size:10px;
+  color:var(--muted);
+}
+#view-rules .horizontal-filter-panel #filters .filter-options,
+#view-rules .horizontal-filter-panel #filters .displayObligation-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .regulationEffect-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .durationRule-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .spaceStrategy-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .domain-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .owner-filter .filter-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+}
+#view-rules .horizontal-filter-panel #filters .filter-chip{
+  width:auto;
+  min-height:27px;
+  flex:0 1 auto;
+  padding:4px 6px;
+}
+#view-rules .horizontal-filter-panel #filters .filter-chip span{
+  display:block;
+  overflow:visible;
+  white-space:normal;
+}
+#view-rules .library-layout{
+  grid-template-columns:minmax(470px,.9fr) minmax(420px,1.1fr);
+}
+@media (max-width:1320px){
+  #view-rules .horizontal-filter-panel #filters{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:10px 14px;
+  }
+  #view-rules .library-layout{
+    grid-template-columns:minmax(430px,1fr) minmax(340px,1fr);
+  }
+}
+@media (max-width:1120px){
+  #view-rules .library-layout{
+    grid-template-columns:1fr;
+  }
+  #view-rules .detail-panel{
+    display:none;
+  }
+}
+@media (max-width:900px){
+  #view-rules .filter-panel.horizontal-filter-panel{
+    display:block;
+  }
+  #view-rules .horizontal-filter-panel .filter-panel-head{
+    grid-template-columns:1fr auto;
+  }
+  #view-rules .horizontal-filter-panel .rule-filter-search{
+    grid-column:1 / -1;
+    grid-row:2;
+  }
+  #view-rules .horizontal-filter-panel #filters{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media (max-width:620px){
+  #view-rules .horizontal-filter-panel #filters{
+    grid-template-columns:1fr;
+  }
+}
+/* Rules filters: ordered columns and page-level scrolling. */
+#view-rules.active{
+  height:auto;
+  min-height:calc(100dvh - 64px);
+  overflow:visible;
+}
+#view-rules .horizontal-filter-panel .filter-panel-head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:12px;
+}
+#view-rules .horizontal-filter-panel #filters{
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:16px;
+}
+#view-rules .horizontal-filter-panel #filters .filter-options,
+#view-rules .horizontal-filter-panel #filters .displayObligation-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .regulationEffect-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .durationRule-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .spaceStrategy-filter .filter-options,
+#view-rules .horizontal-filter-panel #filters .owner-filter .filter-options{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:5px;
+}
+#view-rules .horizontal-filter-panel #filters .domain-filter .filter-options{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:5px;
+}
+#view-rules .horizontal-filter-panel #filters .filter-chip{
+  width:100%;
+  min-height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  padding:5px 7px;
+}
+#view-rules .library-layout{
+  height:720px;
+  min-height:620px;
+  flex:none;
+}
+.back-to-top{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:80;
+  width:42px;
+  height:42px;
+  border:1px solid #9bbbd6;
+  border-radius:50%;
+  background:#fff;
+  color:var(--blue);
+  box-shadow:0 8px 24px rgba(22,50,79,.18);
+  font-size:20px;
+  line-height:1;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition:.18s ease;
+}
+.back-to-top.visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+.back-to-top:hover{
+  color:#fff;
+  background:var(--blue);
+  border-color:var(--blue);
+}
+@media (max-width:1320px){
+  #view-rules .horizontal-filter-panel #filters{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media (max-width:900px){
+  #view-rules .horizontal-filter-panel #filters{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  #view-rules .library-layout{
+    height:auto;
+    min-height:0;
+  }
+}
+@media (max-width:620px){
+  #view-rules .horizontal-filter-panel #filters{
+    grid-template-columns:1fr;
+  }
+  .back-to-top{
+    right:16px;
+    bottom:16px;
+  }
+}
+/* Icon library density modes. */
+.icon-view-toggle{
+  display:inline-flex;
+  gap:3px;
+  margin-left:auto;
+  padding:3px;
+  border:1px solid var(--line-2);
+  border-radius:9px;
+  background:#eef3f7;
+}
+.icon-view-toggle button{
+  border:0;
+  border-radius:6px;
+  background:transparent;
+  color:var(--muted);
+  padding:7px 11px;
+  font-size:11px;
+}
+.icon-view-toggle button.active{
+  background:#fff;
+  color:var(--blue);
+  box-shadow:0 1px 4px rgba(22,50,79,.14);
+  font-weight:700;
+}
+#view-icons .icon-image img{
+  max-width:none;
+  max-height:none;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  transform:scale(1.34);
+  transform-origin:center;
+}
+#view-icons .icon-grid.large-mode{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+#view-icons .large-mode .icon-card{
+  display:grid;
+  grid-template-columns:minmax(190px,42%) minmax(0,1fr);
+  gap:18px;
+  min-height:270px;
+  padding:16px;
+}
+#view-icons .large-mode .icon-image{
+  width:100%;
+  height:100%;
+  min-height:236px;
+  margin:0;
+}
+#view-icons .large-mode .icon-image img{
+  transform:scale(1.22);
+}
+.icon-large-content{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+}
+#view-icons .large-mode .icon-large-content h3{
+  margin:1px 0 4px;
+  font-size:18px;
+  white-space:normal;
+}
+.icon-large-domain{
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:5px;
+}
+.icon-large-source{
+  color:var(--blue);
+  font-size:11px;
+  line-height:1.5;
+  margin:2px 0 8px;
+}
+.icon-large-summary{
+  margin:7px 0 0;
+  color:#526174;
+  font-size:11px;
+  line-height:1.65;
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.icon-large-action{
+  margin-top:auto;
+  padding-top:10px;
+  color:var(--blue);
+  font-size:11px;
+  font-weight:700;
+}
+@media (max-width:1200px){
+  #view-icons .icon-grid.large-mode{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width:700px){
+  .icon-view-toggle{
+    width:100%;
+    margin-left:0;
+  }
+  .icon-view-toggle button{
+    flex:1;
+  }
+  #view-icons .large-mode .icon-card{
+    grid-template-columns:1fr;
+  }
+  #view-icons .large-mode .icon-image{
+    min-height:240px;
+  }
+}
 </style></head><body>
 <div class="app">
 <aside class="sidebar">
@@ -2379,18 +2706,17 @@ html,body{
 <main class="main">
 <section class="view active" id="view-home">
 <div class="hero"><h2>查询智能座舱法规与法规重点</h2><p>当前已收录 1篇</p><div class="hero-search"><input id="heroSearch" placeholder="输入功能名称、法规编号、条款、图号或法规重点"/><button id="heroSearchBtn">全库查询</button></div><div class="quick-tags" id="quickTags"></div></div>
-<div class="stats" id="stats"></div>
-<div class="section-title"><h3>按法规浏览</h3><button class="text-btn" data-view="regulations">查看法规原文库 →</button></div>
-<div class="home-reg-grid" id="homeRegGrid"></div>
 <div class="section-title"><h3>按功能分类浏览</h3><button class="text-btn" data-view="rules">查看全部规则 →</button></div>
 <div class="domain-grid" id="domainGrid"></div>
 <div class="section-title"><h3>按设计问题查找</h3></div><div class="question-grid" id="questionGrid"></div>
+<div class="stats" id="stats"></div>
 </section>
 <section class="view" id="view-rules">
 <div class="page-head"><div><h2>设计规则库</h2></div><div class="count-pill" id="ruleCountPill"></div></div>
+<h3 class="quick-filter-title">快捷筛选</h3>
 <div aria-label="状态显示快捷入口" class="decision-overview" id="decisionOverview"></div>
+<aside class="filter-panel horizontal-filter-panel"><div class="filter-panel-head"><div class="filter-title"><div><b>筛选条件</b><span id="activeFilterCount"></span></div></div><button class="clear-filter-btn" id="clearFilters">清空全部</button></div><div id="filters"></div></aside>
 <div class="library-layout">
-<aside class="filter-panel"><div class="filter-title"><div><b>筛选条件</b><span id="activeFilterCount"></span></div><button id="clearFilters">清空全部</button></div><label class="rule-filter-search"><span>⌕</span><input id="ruleFilterSearch" placeholder="搜索功能、图标、条款或关键词"/></label><div id="filters"></div></aside>
 <section class="list-panel"><div class="list-toolbar"><b id="listCount"></b><select id="sortSelect"><option value="decision">按设计优先级</option><option value="source">按法规与条款</option><option value="name">按功能名称</option><option value="duty">按显示义务</option><option value="space">按空间策略</option><option value="effect">按法规效力</option></select></div><div class="rule-list" id="ruleList"></div></section>
 <aside class="detail-panel" id="detailPanel"><div class="empty-detail">选择一条规则查看设计结论、法规原文与关联规则</div></aside>
 </div>
@@ -2414,13 +2740,14 @@ html,body{
 </section>
 <section class="view" id="view-icons">
 <div class="page-head"><div><h2>标准图标库</h2></div><div class="count-pill" id="iconCountPill"></div></div>
-<div class="icon-toolbar"><input class="search-box" id="iconSearch" placeholder="搜索图标或功能"/><select class="select-box" id="iconRegulation"></select><select class="select-box" id="iconDisplay"></select><select class="select-box" id="iconDuration"></select><select class="select-box" id="iconSpace"></select><select class="select-box" id="iconColor"></select><select class="select-box" id="iconDomain"></select></div>
+<div class="icon-toolbar"><input class="search-box" id="iconSearch" placeholder="搜索图标或功能"/><select class="select-box" id="iconRegulation"></select><select class="select-box" id="iconDisplay"></select><select class="select-box" id="iconDuration"></select><select class="select-box" id="iconSpace"></select><select class="select-box" id="iconColor"></select><select class="select-box" id="iconDomain"></select><div class="icon-view-toggle" aria-label="图标库显示模式"><button class="active" data-icon-view="small" type="button">小图模式</button><button data-icon-view="large" type="button">大图模式</button></div></div>
 <div class="icon-grid" id="iconGrid"></div>
 </section>
 <section class="view" id="view-terms">
 <div class="page-head"><div><h2>系统使用指南</h2></div></div><div class="terms-grid" id="termsGrid"></div>
 </section>
 </main>
+<button class="back-to-top" id="backToTop" type="button" title="回到顶部" aria-label="回到顶部">↑</button>
 </div>
 </div>
 <div class="modal hidden" id="iconModal"><div class="modal-card"><div class="modal-head"><b id="modalTitle">设计规则详情</b><button class="close-btn" id="closeModal">×</button></div><div class="modal-body" id="modalBody"></div></div></div>
@@ -2456,7 +2783,7 @@ const safeStorage={get(key,fallback){try{const v=localStorage.getItem(key);retur
 const state={view:'home',search:'',filters:{
   displayObligation:new Set(),regulationEffect:new Set(),durationRule:new Set(),
   spaceStrategy:new Set(),domain:new Set(),owner:new Set()
-},selectedRule:null,selectedRegulation:null,sort:'decision',pdfPage:1,pdfTarget:'',favorites:new Set(safeStorage.get('reg-kb-favorites',[])),onlyFavorites:false};
+},selectedRule:null,selectedRegulation:null,sort:'decision',iconView:safeStorage.get('reg-kb-icon-view','small'),pdfPage:1,pdfTarget:'',favorites:new Set(safeStorage.get('reg-kb-favorites',[])),onlyFavorites:false};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const normalize=v=>String(v??'').toLowerCase().replace(/\s+/g,'');
@@ -2617,6 +2944,7 @@ function showView(view,{catalog=false}={}){
   ensureView(view);
   state.view=view;$$('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${view}`));$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
   const main=$('.main');if(main)main.scrollTo({top:0,left:0,behavior:'auto'});
+  $('#backToTop')?.classList.remove('visible');
   if(view==='rules')renderRules();if(view==='icons')renderIcons();if(view==='regulations'&&catalog)showRegCatalog();
 }
 $$('[data-view]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view,{catalog:b.dataset.view==='regulations'})));
@@ -2633,7 +2961,6 @@ function initHome(){
   $('#sideMeta').innerHTML=`<b>知识库状态</b><br>${REGULATIONS.length} 部法规 · ${DESIGN_RULES.length} 条规则<br>${SYMBOLS.length} 个图标 · ${RELATIONS.length} 项关联`;
   const quick=['前照灯远光','状态触发必显','持续至状态解除','可选显示','共用空间','红色'];
   $('#quickTags').innerHTML=quick.map(q=>`<button data-q="${q}">${q}</button>`).join('');$('#quickTags').onclick=e=>{if(e.target.dataset.q)runGlobalSearch(e.target.dataset.q)};
-  $('#homeRegGrid').innerHTML=REGULATIONS.map(r=>regulationCard(r,true)).join('')+`<div class="empty-import-card"><div><b>可继续收录其他法规</b></div></div>`;bindRegCards($('#homeRegGrid'));
   const domains=uniqueRules(r=>r.domain).map(d=>({name:d,rules:DESIGN_RULES.filter(r=>r.domain===d)})).sort((a,b)=>b.rules.length-a.rules.length).slice(0,10);
   $('#domainGrid').innerHTML=domains.map(d=>`<button class="domain-card" data-domain="${esc(d.name)}"><div class="mini-icons">${d.rules.filter(r=>r.icon).slice(0,3).map(r=>`<img src="${r.icon}" loading="lazy" decoding="async">`).join('')||'<div class="mini-placeholder">规</div>'}</div><b>${esc(d.name)}</b><span>${d.rules.length} 条规则</span></button>`).join('');$('#domainGrid').onclick=e=>{const b=e.target.closest('[data-domain]');if(!b)return;clearFilterState();state.filters.domain.add(b.dataset.domain);showView('rules')};
   const questions=[['哪些状态触发后必须独占持续显示？','preset:critical'],['哪些图标状态触发时必须显示？','preset:required'],['哪些图标可以不显示？','preset:optional'],['哪些规则由视觉组主责？','preset:visual'],['哪些条目不涉及屏幕显示？','preset:noscreen'],['哪些条款明确引用了其他规则？','search:明确引用']];
@@ -2819,12 +3146,15 @@ function initIcons(){
   $('#iconColor').innerHTML=options([...new Set(SYMBOLS.map(s=>s.color).filter(v=>v&&v!=='/'))],'全部颜色');
   $('#iconDomain').innerHTML=options([...new Set(SYMBOLS.map(s=>s.domain))],'全部功能');
   ['iconSearch','iconRegulation','iconDisplay','iconDuration','iconSpace','iconColor','iconDomain'].forEach(id=>{const el=$(`#${id}`);if(el)el.addEventListener(id==='iconSearch'?'input':'change',renderIcons)});renderIcons();
+  $$('.icon-view-toggle [data-icon-view]').forEach(b=>b.onclick=()=>{state.iconView=b.dataset.iconView;safeStorage.set('reg-kb-icon-view',state.iconView);renderIcons()});
 }
 function renderIcons(){
   const q=normalize($('#iconSearch')?.value),regId=$('#iconRegulation')?.value,display=$('#iconDisplay')?.value,duration=$('#iconDuration')?.value,space=$('#iconSpace')?.value,color=$('#iconColor')?.value,domain=$('#iconDomain')?.value;
   const arr=SYMBOLS.filter(s=>{const rule=ruleById(s.ruleIds[0]),regs=ruleRegulations(rule);return(!q||ruleHaystack(rule).includes(q))&&(!regId||regs.includes(regId))&&(!display||s.displayObligation===display)&&(!duration||s.durationRule===duration)&&(!space||s.spaceStrategy===space)&&(!color||s.color===color)&&(!domain||s.domain===domain)});
   $('#iconCountPill').textContent=`${arr.length} / ${SYMBOLS.length} 个图标`;
-  $('#iconGrid').innerHTML=arr.map(s=>{const r=ruleById(s.ruleIds[0]);return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><h3>${esc(s.name)}</h3><div class="meta-line">${ruleMetaHTML(r)}</div><div class="icon-source">${esc(sourceLabel(primarySource(r)))} · ${outgoingRelations(r.id).length} 项关联</div></button>`}).join('')||'<div class="empty-state">没有找到匹配图标。</div>';$$('[data-symbol]').forEach(b=>b.onclick=()=>openIconModal(b.dataset.symbol));
+  const grid=$('#iconGrid');grid.classList.toggle('large-mode',state.iconView==='large');grid.classList.toggle('small-mode',state.iconView!=='large');
+  $$('.icon-view-toggle [data-icon-view]').forEach(b=>b.classList.toggle('active',b.dataset.iconView===state.iconView));
+  grid.innerHTML=arr.map(s=>{const r=ruleById(s.ruleIds[0]),source=primarySource(r),relations=outgoingRelations(r.id);if(state.iconView==='large')return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><div class="icon-large-content"><div class="icon-large-domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</div><h3>${esc(s.name)}</h3><div class="icon-large-source">${esc(sourceLabel(source))}</div><div class="meta-line">${ruleMetaHTML(r)}</div><p class="icon-large-summary">${esc(r.check&&r.check!=='/'?r.check:(r.original||source?.sourceText||'暂无补充说明'))}</p><div class="icon-large-action">查看完整详情 · ${relations.length} 项关联 →</div></div></button>`;return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><h3>${esc(s.name)}</h3><div class="meta-line">${ruleMetaHTML(r)}</div><div class="icon-source">${esc(sourceLabel(source))} · ${relations.length} 项关联</div></button>`}).join('')||'<div class="empty-state">没有找到匹配图标。</div>';$$('[data-symbol]').forEach(b=>b.onclick=()=>openIconModal(b.dataset.symbol));
 }
 function openRuleModal(ruleId,mode='rule'){const r=ruleById(ruleId);if(!r)return;$('#modalTitle').textContent=mode==='icon'?'标准图标详情':'规则条目详情';const root=$('#modalBody');root.innerHTML=`<div class="modal-rule-detail">${ruleDetailHTML(r,{modal:true,mode})}</div>`;$('#iconModal').classList.remove('hidden');bindRuleDetail(root,r,{modal:true,mode})}
 function openIconModal(id){
@@ -2887,6 +3217,11 @@ function initTerms(){
     ]}
   ];
   $('#termsGrid').innerHTML=sections.map(s=>`<section class="term-section ${s.type}"><h3>${esc(s.title)}<span class="${s.type==='official'?'official-badge':'internal-badge'}">${esc(s.badge)}</span></h3><div class="term-list">${s.items.map(([k,v])=>`<div class="term-item"><b>${esc(k)}</b><p>${highlightRegText(v)}</p></div>`).join('')}</div></section>`).join('');
+}
+const mainScroller=$('.main'),backToTop=$('#backToTop');
+if(mainScroller&&backToTop){
+  mainScroller.addEventListener('scroll',()=>backToTop.classList.toggle('visible',state.view==='rules'&&mainScroller.scrollTop>260),{passive:true});
+  backToTop.addEventListener('click',()=>mainScroller.scrollTo({top:0,left:0,behavior:'smooth'}));
 }
 initHome();viewInited.home=true;
 </script></body></html>
