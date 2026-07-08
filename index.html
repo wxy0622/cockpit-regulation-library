@@ -3360,6 +3360,212 @@ body,button,input,select{
     display:none;
   }
 }
+/* Rule library: responsive single-column summary list. */
+#view-rules .library-layout{
+  display:block;
+  width:100%;
+  height:auto;
+  min-height:0;
+}
+#view-rules .list-panel{
+  overflow:visible;
+}
+#view-rules .rule-list{
+  height:auto;
+  max-height:none;
+  overflow:visible;
+  padding:10px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:9px;
+}
+#view-rules .rule-item{
+  min-height:150px;
+  grid-template-columns:132px minmax(0,1fr);
+  align-items:center;
+  gap:18px;
+  padding:10px 16px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+  cursor:default;
+}
+#view-rules .rule-item:hover{
+  border-color:var(--line);
+  background:#fff;
+  box-shadow:none;
+}
+#view-rules .rule-icon{
+  width:132px;
+  height:132px;
+  padding:5px;
+  border-radius:9px;
+}
+#view-rules .rule-main{
+  min-width:0;
+}
+#view-rules .rule-row{
+  align-items:flex-start;
+  gap:16px;
+}
+#view-rules .rule-row h3{
+  margin-top:2px;
+  font-size:18px;
+}
+#view-rules .rule-domain{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.25;
+}
+#view-rules .rule-card-actions{
+  display:flex;
+  flex:none;
+  gap:8px;
+}
+#view-rules .primary-link{
+  padding:6px 11px;
+  border-radius:7px;
+  background:var(--blue);
+  color:#fff;
+}
+#view-rules .rule-source-full{
+  margin-top:5px;
+}
+#view-rules .meta-line{
+  margin-top:7px;
+}
+#view-rules .rule-summary{
+  margin-top:7px;
+  display:-webkit-box;
+  overflow:hidden;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  line-height:1.45;
+}
+#view-rules .rule-item{
+  align-items:flex-start;
+}
+#view-rules .rule-icon{
+  margin-top:2px;
+}
+#view-rules .rule-inline-content{
+  margin-top:9px;
+  display:grid;
+  grid-template-columns:minmax(260px,.9fr) minmax(420px,1.35fr);
+  gap:10px;
+}
+#view-rules .rule-inline-content>section{
+  min-width:0;
+  padding:8px 10px;
+  border:1px solid #e1e8ef;
+  border-radius:8px;
+  background:#f8fafc;
+}
+#view-rules .rule-inline-content h4{
+  margin:0 0 5px;
+  color:#344155;
+  font-size:12px;
+}
+#view-rules .inline-section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:5px;
+}
+#view-rules .inline-section-head h4{
+  margin:0;
+}
+#view-rules .inline-section-head .source-link{
+  flex:none;
+}
+#view-rules .rule-inline-content p{
+  margin:0;
+  color:#56657a;
+  font-size:12px;
+  line-height:1.5;
+  display:block;
+  overflow:visible;
+}
+#view-rules .rule-inline-decisions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:5px 12px;
+}
+#view-rules .rule-inline-decisions>div{
+  display:grid;
+  grid-template-columns:62px minmax(0,1fr);
+  align-items:baseline;
+  gap:6px;
+  min-width:0;
+}
+#view-rules .rule-inline-decisions span{
+  color:#8290a2;
+  font-size:10px;
+}
+#view-rules .rule-inline-decisions b{
+  min-width:0;
+  color:#344155;
+  font-size:11px;
+  font-weight:600;
+  line-height:1.35;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#view-rules .rule-card-more{
+  margin-top:9px;
+}
+#view-rules .rule-card-more>summary{
+  min-height:44px;
+}
+#view-rules .rule-card-more .detail-more-body{
+  padding:0 12px 12px;
+}
+@media (max-width:900px){
+  #view-rules .rule-item{
+    min-height:132px;
+    grid-template-columns:112px minmax(0,1fr);
+    gap:13px;
+    padding:10px 12px;
+  }
+  #view-rules .rule-icon{
+    width:112px;
+    height:112px;
+  }
+  #view-rules .rule-inline-content{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width:620px){
+  #view-rules .rule-item{
+    min-height:116px;
+    grid-template-columns:88px minmax(0,1fr);
+    align-items:start;
+    gap:10px;
+    padding:10px;
+  }
+  #view-rules .rule-icon{
+    width:88px;
+    height:88px;
+  }
+  #view-rules .rule-row{
+    display:block;
+  }
+  #view-rules .rule-card-actions{
+    margin-top:7px;
+  }
+  #view-rules .rule-row h3{
+    font-size:16px;
+  }
+  #view-rules .rule-summary{
+    -webkit-line-clamp:1;
+  }
+  #view-rules .rule-inline-decisions{
+    grid-template-columns:1fr;
+  }
+}
 </style></head><body>
 <div class="app">
 <aside class="sidebar">
@@ -3393,7 +3599,6 @@ body,button,input,select{
 <aside class="filter-panel horizontal-filter-panel"><div class="filter-panel-head"><div class="filter-title"><div><b>筛选条件</b><span id="activeFilterCount"></span></div></div><button class="clear-filter-btn" id="clearFilters">清空全部</button></div><div id="filters"></div></aside>
 <div class="library-layout">
 <section class="list-panel"><div class="list-toolbar"><b id="listCount"></b><select id="sortSelect"><option value="decision">按设计优先级</option><option value="source">按法规与条款</option><option value="name">按功能名称</option><option value="duty">按显示义务</option><option value="space">按空间策略</option><option value="effect">按法规效力</option></select></div><div class="rule-list" id="ruleList"></div></section>
-<aside class="detail-panel" id="detailPanel"><div class="empty-detail">选择一条规则查看设计结论、法规原文与关联规则</div></aside>
 </div>
 </section>
 <section class="view" id="view-regulations">
@@ -3598,6 +3803,26 @@ function ruleSummaryText(r){
   if(r.ruleLevel!=='具体标识'){const p=parseKeyPoints(r.keyPoints);return p['关键约束']||r.ruleTopic||r.original}
   return [r.displayObligation,r.durationRule!=='/'?r.durationRule:'',r.spaceStrategy!=='/'?r.spaceStrategy:''].filter(Boolean).join('；');
 }
+function compactDecisionHTML(r){
+  const items=[
+    ['控件标识',r.controlMarkRequirement],
+    ['显示义务',r.displayObligation],
+    ['持续规则',r.durationRule],
+    ['空间策略',r.spaceStrategy]
+  ].filter(x=>x[1]&&x[1]!=='/');
+  return `<div class="rule-inline-decisions">${items.map(([k,v])=>`<div><span>${esc(k)}</span><b>${highlightRegText(v)}</b></div>`).join('')}</div>`;
+}
+function inlineMoreInfoHTML(r){
+  const related=DESIGN_RULES.filter(x=>x.id!==r.id&&x.domain===r.domain).slice(0,4);
+  const checkHTML=r.check&&r.check!=='/'?`<ul class="check-list">${r.check.split(/[；。]/).filter(Boolean).map(x=>`<li>${highlightRegText(x)}</li>`).join('')}</ul>`:'<div class="info-card">/</div>';
+  return `<details class="detail-more rule-card-more"><summary><b>查看更多规则信息</b><span>关联规则、分类、法规重点与检查要点</span><i>⌄</i></summary><div class="detail-more-body">
+    ${relationGroupsHTML(r)}
+    <section class="detail-section"><h4>法规分类信息</h4>${classificationHTML(r)}</section>
+    <section class="detail-section"><h4>法规重点</h4>${keyPointHTML(r)}</section>
+    <section class="detail-section"><h4>设计检查要点</h4>${checkHTML}</section>
+    <section class="detail-section"><h4>同类规则</h4><div class="related">${related.map(x=>`<button data-related="${x.id}"><b>${esc(x.name)}</b><br><span>${esc(primarySource(x)?.localLocator||primarySource(x)?.clauseId||'')} · ${esc(x.displayObligation)}</span></button>`).join('')||'暂无同类规则'}</div></section>
+  </div></details>`;
+}
 function classificationHTML(r){
   const topicHTML=r.ruleTopics?.length?`<div class="topic-tags">${r.ruleTopics.map(x=>`<span class="tag topic">${esc(x)}</span>`).join('')}</div>`:esc(r.ruleTopic||'/');
   const pairs=[['规则层级',esc(r.ruleLevel||'/')],['适用对象',esc(r.applicableObject||'/')],['法规效力',highlightRegText(r.regulationEffect||'/')],['规则主题',topicHTML,'wide'],['主责岗位',esc(r.owner||'/')],['协同岗位',esc(r.collaborator||'/')],['规定颜色',highlightRegText(r.color||'/')],['关联规则摘要',esc(r.relationSummary||'/'),'wide']];
@@ -3766,10 +3991,10 @@ function renderRules(){
   const selectedCount=filterDefs.reduce((sum,d)=>sum+(state.filters[d.key]?.size||0),0);const activeCount=$('#activeFilterCount');if(activeCount)activeCount.textContent=state.onlyFavorites?'仅看收藏':(selectedCount?`已选 ${selectedCount} 项`:'');
   $$('.filter-chip').forEach(b=>b.classList.toggle('active',state.filters[b.dataset.filter]?.has(b.dataset.value)));
   renderFilterSummaries();
-  if(!arr.length){$('#ruleList').innerHTML='<div class="empty-state">没有找到匹配规则，请调整关键词或筛选条件。</div>';$('#detailPanel').innerHTML='<div class="empty-detail">暂无可显示的规则</div>';return}
+  if(!arr.length){$('#ruleList').innerHTML='<div class="empty-state">没有找到匹配规则，请调整关键词或筛选条件。</div>';return}
   if(!state.selectedRule||!arr.some(r=>r.id===state.selectedRule))state.selectedRule=arr[0].id;
-  $('#ruleList').innerHTML=arr.map(r=>{const s=primarySource(r);return `<article class="rule-item ${r.id===state.selectedRule?'active':''}" data-id="${r.id}"><div class="rule-icon">${iconHTML(r)}</div><div class="rule-main"><div class="rule-row"><h3>${esc(r.name)}</h3><button class="source-link" data-open-source="${s?.id||''}">查看原文 ↗</button></div><div class="rule-source-full">${esc(sourceLabel(s))}</div><div class="meta-line">${ruleMetaHTML(r)}</div><div class="rule-summary">${highlightRegText(ruleSummaryText(r))}</div></div></article>`}).join('');
-  $('#ruleList').onclick=e=>{const src=e.target.closest('[data-open-source]');if(src){e.stopPropagation();openSource(src.dataset.openSource);return}const item=e.target.closest('.rule-item');if(item){state.selectedRule=item.dataset.id;renderRules()}};renderDetail(ruleById(state.selectedRule));
+  $('#ruleList').innerHTML=arr.map(r=>{const s=primarySource(r);return `<article class="rule-item" data-id="${r.id}"><div class="rule-icon">${iconHTML(r)}</div><div class="rule-main"><div class="rule-row"><div><span class="rule-domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</span><h3>${esc(r.name)}</h3></div></div><div class="rule-source-full">${esc(sourceLabel(s))}</div><div class="meta-line">${ruleMetaHTML(r)}</div><div class="rule-inline-content"><section class="inline-original"><div class="inline-section-head"><h4>法规原文</h4><button class="source-link" data-open-source="${s?.id||''}">查看原文 ↗</button></div><p>${highlightOriginalText(r.original||s?.sourceText||'')}</p></section><section><h4>综合设计结论</h4>${compactDecisionHTML(r)}</section></div>${inlineMoreInfoHTML(r)}</div></article>`}).join('');
+  $('#ruleList').onclick=e=>{const src=e.target.closest('[data-open-source]');if(src){e.preventDefault();openSource(src.dataset.openSource);return}const related=e.target.closest('[data-related]');if(related){e.preventDefault();revealRuleInLibrary(related.dataset.related)}};
 }
 function ruleDetailHTML(r,{modal=false,mode='rule'}={}){
   const related=DESIGN_RULES.filter(x=>x.id!==r.id&&x.domain===r.domain).slice(0,4),fav=state.favorites.has(r.id);
