@@ -3265,6 +3265,101 @@ body,button,input,select{
   .icon-large-original,.icon-large-fact b,.kv b,.count-pill,
   .summary-chip,.reg-meta,.reg-foot,.source-count{font-size:12px}
 }
+/* Rule library: larger symbols and progressive disclosure in detail panel. */
+#view-rules .rule-item{
+  grid-template-columns:78px minmax(0,1fr);
+  gap:13px;
+  padding:13px;
+}
+#view-rules .rule-icon{
+  width:78px;
+  height:78px;
+  padding:4px;
+}
+#view-rules .rule-icon img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+#view-rules .detail-icon{
+  width:136px;
+  height:136px;
+  padding:6px;
+}
+#view-rules .detail-icon img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+#view-rules .detail-top{
+  align-items:flex-start;
+}
+.detail-more{
+  margin-top:18px;
+  border:1px solid var(--line-2);
+  border-radius:10px;
+  overflow:hidden;
+  background:#fff;
+}
+.detail-more>summary{
+  min-height:54px;
+  padding:0 14px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  list-style:none;
+  color:#344155;
+}
+.detail-more>summary::-webkit-details-marker{
+  display:none;
+}
+.detail-more>summary b{
+  font-size:13px;
+}
+.detail-more>summary span{
+  color:var(--muted);
+  font-size:10px;
+}
+.detail-more>summary i{
+  color:#8492a5;
+  font-size:15px;
+  font-style:normal;
+  transition:.16s;
+}
+.detail-more[open]>summary{
+  border-bottom:1px solid var(--line);
+  background:#f8fafc;
+}
+.detail-more[open]>summary i{
+  transform:rotate(180deg);
+}
+.detail-more-body{
+  padding:0 14px 14px;
+}
+.detail-more-body>.detail-section:first-child{
+  margin-top:14px;
+}
+@media (max-width:700px){
+  #view-rules .rule-item{
+    grid-template-columns:64px minmax(0,1fr);
+  }
+  #view-rules .rule-icon{
+    width:64px;
+    height:64px;
+  }
+  #view-rules .detail-icon{
+    width:108px;
+    height:108px;
+  }
+  .detail-more>summary{
+    grid-template-columns:1fr auto;
+  }
+  .detail-more>summary span{
+    display:none;
+  }
+}
 </style></head><body>
 <div class="app">
 <aside class="sidebar">
@@ -3682,11 +3777,12 @@ function ruleDetailHTML(r,{modal=false,mode='rule'}={}){
   return `<div class="detail-content"><div class="detail-top"><div class="detail-icon">${iconHTML(r)}</div><div class="detail-title"><span class="domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</span><h3>${esc(r.name)}</h3><div class="meta-line">${ruleMetaHTML(r)}</div><div class="detail-actions"><button class="btn primary" data-open-source="${primarySource(r)?.id||''}">查看主要原文</button><button class="btn fav ${fav?'active':''}" data-fav>${fav?'★ 已收藏':'☆ 收藏'}</button>${modal?'<button class="btn" data-open-library>在规则库中查看 →</button>':''}</div></div></div>
   <section class="detail-section original-section"><h4>法规原文</h4><div class="original-source-line"><span>来源</span><b>${esc(sourceLabel(primarySource(r)))}</b></div><div class="info-card source original-text">${highlightOriginalText(r.original||primarySource(r)?.sourceText||'')}</div></section>
   <section class="detail-section decision-section"><h4>综合设计结论</h4>${decisionGridHTML(r)}<div class="decision-basis">该结论综合上方法规原文与下方关联规则生成；条件未成立时，不应把条件关联当作无条件要求。</div></section>
+  <details class="detail-more"><summary><b>查看更多规则信息</b><span>关联规则、分类、法规重点与检查要点</span><i>⌄</i></summary><div class="detail-more-body">
   ${relationGroupsHTML(r)}
   <section class="detail-section"><h4>法规分类信息</h4>${classificationHTML(r)}</section>
   <section class="detail-section"><h4>法规重点</h4>${keyPointHTML(r)}</section>
   <section class="detail-section"><h4>设计检查要点</h4>${checkHTML}</section>
-  <section class="detail-section"><h4>同类规则</h4><div class="related">${related.map(x=>`<button data-related="${x.id}"><b>${esc(x.name)}</b><br><span>${esc(primarySource(x)?.localLocator||primarySource(x)?.clauseId||'')} · ${esc(x.displayObligation)}${x.spaceStrategy&&x.spaceStrategy!=='/'?' · '+esc(x.spaceStrategy):''}</span></button>`).join('')||'暂无同类规则'}</div></section></div>`;
+  <section class="detail-section"><h4>同类规则</h4><div class="related">${related.map(x=>`<button data-related="${x.id}"><b>${esc(x.name)}</b><br><span>${esc(primarySource(x)?.localLocator||primarySource(x)?.clauseId||'')} · ${esc(x.displayObligation)}${x.spaceStrategy&&x.spaceStrategy!=='/'?' · '+esc(x.spaceStrategy):''}</span></button>`).join('')||'暂无同类规则'}</div></section></div></details></div>`;
 }
 function bindRuleDetail(root,r,{modal=false,mode='rule'}={}){
   root.querySelectorAll('[data-open-source]').forEach(b=>b.onclick=()=>{if(modal)closeModal();openSource(b.dataset.openSource)});
