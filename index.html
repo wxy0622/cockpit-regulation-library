@@ -2584,12 +2584,24 @@ html,body{
   background:#eef3f7;
 }
 .icon-view-toggle button{
+  width:42px;
+  height:36px;
+  display:grid;
+  place-items:center;
   border:0;
   border-radius:6px;
   background:transparent;
   color:var(--muted);
-  padding:7px 11px;
-  font-size:11px;
+  padding:0;
+}
+.icon-view-toggle button svg{
+  width:21px;
+  height:21px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 .icon-view-toggle button.active{
   background:#fff;
@@ -2677,6 +2689,7 @@ html,body{
   }
   .icon-view-toggle button{
     flex:1;
+    width:auto;
   }
   #view-icons .large-mode .icon-card{
     grid-template-columns:1fr;
@@ -3381,7 +3394,7 @@ body,button,input,select{
 }
 #view-rules .rule-item{
   min-height:150px;
-  grid-template-columns:132px minmax(0,1fr);
+  grid-template-columns:168px minmax(0,1fr);
   align-items:center;
   gap:18px;
   padding:10px 16px;
@@ -3396,9 +3409,9 @@ body,button,input,select{
   box-shadow:none;
 }
 #view-rules .rule-icon{
-  width:132px;
-  height:132px;
-  padding:5px;
+  width:168px;
+  height:168px;
+  padding:3px;
   border-radius:9px;
 }
 #view-rules .rule-main{
@@ -3526,13 +3539,13 @@ body,button,input,select{
 @media (max-width:900px){
   #view-rules .rule-item{
     min-height:132px;
-    grid-template-columns:112px minmax(0,1fr);
+    grid-template-columns:136px minmax(0,1fr);
     gap:13px;
     padding:10px 12px;
   }
   #view-rules .rule-icon{
-    width:112px;
-    height:112px;
+    width:136px;
+    height:136px;
   }
   #view-rules .rule-inline-content{
     grid-template-columns:1fr;
@@ -3541,14 +3554,14 @@ body,button,input,select{
 @media (max-width:620px){
   #view-rules .rule-item{
     min-height:116px;
-    grid-template-columns:88px minmax(0,1fr);
+    grid-template-columns:104px minmax(0,1fr);
     align-items:start;
     gap:10px;
     padding:10px;
   }
   #view-rules .rule-icon{
-    width:88px;
-    height:88px;
+    width:104px;
+    height:104px;
   }
   #view-rules .rule-row{
     display:block;
@@ -3620,7 +3633,7 @@ body,button,input,select{
 </section>
 <section class="view" id="view-icons">
 <div class="page-head"><div><h2>标准图标库</h2></div><div class="count-pill" id="iconCountPill"></div></div>
-<div class="icon-filter-panel"><div class="icon-filter-head"><b>筛选条件</b><div class="icon-view-toggle" aria-label="图标库显示模式"><button class="active" data-icon-view="small" type="button">小图模式</button><button data-icon-view="large" type="button">大图模式</button></div></div><div class="icon-toolbar"><input class="search-box" id="iconSearch" placeholder="搜索图标或功能"/><select class="native-icon-filter" id="iconRegulation"></select><select class="native-icon-filter" id="iconDisplay"></select><select class="native-icon-filter" id="iconDuration"></select><select class="native-icon-filter" id="iconSpace"></select><select class="native-icon-filter" id="iconColor"></select><select class="native-icon-filter" id="iconDomain"></select><div id="iconFilterDropdowns"></div></div></div>
+<div class="icon-filter-panel"><div class="icon-filter-head"><b>筛选条件</b><div class="icon-view-toggle" aria-label="图标库显示模式"><button class="active" data-icon-view="small" type="button" aria-label="画廊模式" title="画廊模式"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button><button data-icon-view="large" type="button" aria-label="详情模式" title="详情模式"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1"/><path d="M14 6h7M14 10h5M3 16h7M14 16h7M3 20h7M14 20h5"/></svg></button></div></div><div class="icon-toolbar"><input class="search-box" id="iconSearch" placeholder="搜索图标或功能"/><select class="native-icon-filter" id="iconRegulation"></select><select class="native-icon-filter" id="iconDisplay"></select><select class="native-icon-filter" id="iconDuration"></select><select class="native-icon-filter" id="iconSpace"></select><select class="native-icon-filter" id="iconColor"></select><select class="native-icon-filter" id="iconDomain"></select><div id="iconFilterDropdowns"></div></div></div>
 <div class="icon-grid" id="iconGrid"></div>
 </section>
 <section class="view" id="view-terms">
