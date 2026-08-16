@@ -639,6 +639,22 @@ button{
   display:flex;
   gap:7px;
   margin-top:11px;
+  flex-wrap:wrap;
+}
+.detail-source-ref{
+  margin-top:7px;
+  color:var(--blue);
+  font-size:11px;
+  font-weight:700;
+}
+.detail-head-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:9px;
+}
+.detail-head-tags .tag{
+  font-size:10px;
 }
 .btn{
   border:1px solid var(--line-2);
@@ -1424,26 +1440,26 @@ html,body{
   font-size:9px;
 }
 #iconModal .modal-card{
-  width:min(1120px,96vw);
+  width:min(960px,94vw);
   max-height:92vh;
 }
 #iconModal .modal-body{
   padding:0;
 }
 #iconModal .modal-rule-detail .detail-content{
-  padding:24px 28px;
+  padding:22px 24px 24px;
 }
 #iconModal .modal-rule-detail .detail-top{
   align-items:flex-start;
 }
 #iconModal .modal-rule-detail .detail-icon{
-  width:180px;
-  height:180px;
+  width:144px;
+  height:144px;
   background:#f8fafc;
 }
 #iconModal .modal-rule-detail .detail-icon img{
-  width:152px;
-  height:152px;
+  width:122px;
+  height:122px;
 }
 #iconModal .modal-rule-detail .detail-title h3{
   font-size:25px;
@@ -1668,7 +1684,7 @@ html,body{
   gap:8px;
 }
 .classification-grid .kv{
-  min-height:58px;
+  min-height:48px;
 }
 .classification-grid .kv b{
   line-height:1.45;
@@ -1856,6 +1872,31 @@ html,body{
   opacity:.55;
   cursor:not-allowed;
 }
+#view-icons .icon-class-title{
+  margin:0 0 7px;
+  font-size:13px;
+  line-height:1.3;
+}
+#view-icons .icon-class-note{
+  margin:-3px 0 9px;
+  color:var(--muted);
+  font-size:10px;
+}
+#view-icons .icon-class-overview{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  margin-bottom:12px;
+}
+#view-icons .icon-class-overview .decision-preset.active{
+  border-color:#2f75b5;
+  background:#f3f8fd;
+  box-shadow:0 0 0 2px rgba(47,117,181,.12);
+}
+#view-icons .decision-preset.class-one{border-top:3px solid #d9534f}
+#view-icons .decision-preset.class-two{border-top:3px solid #2f75b5}
+#view-icons .decision-preset.class-three{border-top:3px solid #79a37a}
+@media (max-width:760px){
+  #view-icons .icon-class-overview{grid-template-columns:1fr}
+}
 .advanced-filter-groups.hidden{
   display:none;
 }
@@ -1900,13 +1941,13 @@ html,body{
 }
 .decision-grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:9px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:7px;
 }
 .decision-item{
   border:1px solid var(--line);
   border-radius:9px;
-  padding:11px;
+  padding:10px;
   background:#f8fafc;
 }
 .decision-item.primary{
@@ -1920,8 +1961,8 @@ html,body{
   margin-bottom:5px;
 }
 .decision-item b{
-  font-size:12px;
-  line-height:1.5;
+  font-size:11px;
+  line-height:1.45;
 }
 .decision-item p{
   margin:7px 0 0;
@@ -1938,6 +1979,51 @@ html,body{
   font-size:10px;
   line-height:1.6;
 }
+.detail-caveat{
+  margin:8px 1px 0;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.5;
+}
+.detail-disclosure{
+  margin-top:14px;
+  border:1px solid var(--line-2);
+  border-radius:10px;
+  overflow:hidden;
+  background:#fff;
+}
+.detail-disclosure>summary{
+  min-height:48px;
+  padding:0 13px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  list-style:none;
+}
+.detail-disclosure>summary::-webkit-details-marker{display:none}
+.detail-disclosure>summary b{font-size:12px}
+.detail-disclosure>summary span{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:var(--blue);
+  font-size:10px;
+}
+.detail-disclosure>summary i{
+  color:#8492a5;
+  font-size:14px;
+  font-style:normal;
+  transition:.16s;
+}
+.detail-disclosure[open]>summary{
+  border-bottom:1px solid var(--line);
+  background:#f8fafc;
+}
+.detail-disclosure[open]>summary i{transform:rotate(180deg)}
+.detail-disclosure-body{padding:12px}
+.detail-disclosure-body .original-text{margin-top:8px}
 .relation-list{
   display:grid;
   gap:9px;
@@ -2431,7 +2517,7 @@ html,body{
 }
 #view-rules .horizontal-filter-panel #filters{
   display:grid;
-  grid-template-columns:1.15fr .75fr 1.15fr 1.15fr 1.35fr .8fr;
+  grid-template-columns:.8fr 1.35fr .8fr;
   gap:0 14px;
   align-items:start;
 }
@@ -2920,9 +3006,21 @@ html,body{
 .icon-filter-head>b{
   font-size:13px;
 }
+.icon-filter-actions{display:flex;align-items:center;gap:8px}
+.icon-edit-btn{
+  height:30px;padding:0 11px;border:1px solid var(--line-2);border-radius:7px;
+  background:#fff;color:var(--blue);font-size:11px;font-weight:700;
+}
+.icon-edit-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+#view-icons .icon-card.editing{cursor:default}
+.icon-class-editor{
+  width:100%;margin:9px 0 0;padding:8px;border:1px solid #a8c5df;border-radius:8px;
+  background:#f3f8fd;color:#26384e;font-size:11px;
+}
+.icon-class-editor-label{display:block;margin-top:8px;color:var(--muted);font-size:9px}
 #view-icons .icon-filter-panel .icon-toolbar{
   display:grid;
-  grid-template-columns:minmax(220px,1.35fr) repeat(6,minmax(125px,1fr));
+  grid-template-columns:minmax(220px,1.35fr) repeat(3,minmax(125px,1fr));
   gap:8px;
   margin:0;
 }
@@ -3340,14 +3438,14 @@ body,button,input,select{
   align-items:flex-start;
 }
 .detail-more{
-  margin-top:18px;
+  margin-top:10px;
   border:1px solid var(--line-2);
   border-radius:10px;
   overflow:hidden;
   background:#fff;
 }
 .detail-more>summary{
-  min-height:54px;
+  min-height:48px;
   padding:0 14px;
   display:grid;
   grid-template-columns:auto minmax(0,1fr) auto;
@@ -3383,6 +3481,18 @@ body,button,input,select{
 .detail-more-body{
   padding:0 14px 14px;
 }
+.detail-more .classification-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:6px;
+}
+.detail-more .classification-grid .kv{
+  min-height:0;
+  padding:8px 9px;
+  background:#fbfcfd;
+}
+.detail-more .classification-grid .kv.wide{
+  grid-column:1/-1;
+}
 .detail-more-body>.detail-section:first-child{
   margin-top:14px;
 }
@@ -3403,6 +3513,10 @@ body,button,input,select{
   }
   .detail-more>summary span{
     display:none;
+  }
+  .decision-grid,
+  .detail-more .classification-grid{
+    grid-template-columns:1fr 1fr;
   }
 }
 /* Rule library: responsive single-column summary list. */
@@ -3648,14 +3762,107 @@ body,button,input,select{
     grid-template-columns:1fr;
   }
 }
+/* Release gate: keep unfinished modules in source without exposing them in the published UI. */
+.release-hidden{display:none!important}
+/* Interactive instrument cluster */
+#view-cluster{padding:22px 24px}
+.cluster-workbench{display:grid;grid-template-columns:minmax(620px,1.55fr) minmax(320px,.72fr);gap:18px;align-items:start}
+.cluster-preview-card,.cluster-controls{border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 8px 30px rgba(31,52,76,.07)}
+.cluster-preview-card{padding:14px;background:#e8edf2}
+.cluster-screen{min-height:620px;padding:18px 24px 20px;border-radius:22px;color:#edf7ff;background:radial-gradient(circle at 50% 44%,#183d59 0,#0b2338 38%,#06121e 78%);box-shadow:inset 0 0 0 1px rgba(125,194,235,.16),inset 0 -50px 90px rgba(0,0,0,.35);overflow:hidden}
+.cluster-status,.cluster-footer{display:flex;align-items:center;justify-content:space-between;color:#8da8ba;font-size:11px;letter-spacing:.05em}
+.cluster-status b{color:#eef8ff;font-size:13px}
+.cluster-zone-label{margin:13px 0 7px;color:#648197;font-size:9px;text-align:center;letter-spacing:.08em}
+.cluster-one-row,.cluster-shared-row,.cluster-dynamic-row{display:flex;align-items:center;justify-content:center;gap:9px;min-height:48px}
+.cluster-lamp-slot{width:43px;height:43px;display:grid;place-items:center;border:1px solid rgba(122,164,191,.2);border-radius:10px;background:rgba(3,15,26,.58);position:relative;transition:.2s}
+.cluster-lamp-slot img{width:31px;height:31px;object-fit:contain;filter:invert(92%) sepia(20%) saturate(650%) hue-rotate(168deg);opacity:.14;transition:.2s}
+.cluster-lamp-slot.active{border-color:rgba(255,199,68,.55);box-shadow:0 0 16px rgba(255,184,44,.14)}
+.cluster-lamp-slot.active img{opacity:1;filter:invert(88%) sepia(92%) saturate(1200%) hue-rotate(340deg) brightness(108%) drop-shadow(0 0 7px #ffc34d)}
+.cluster-lamp-slot.empty:after{content:'+';color:#29465a;font-size:16px}
+.cluster-lamp-slot[data-color="红色"].active img{filter:invert(42%) sepia(96%) saturate(3200%) hue-rotate(340deg) brightness(108%)}
+.cluster-lamp-slot[data-color="绿色"].active img{filter:invert(76%) sepia(66%) saturate(640%) hue-rotate(75deg) brightness(110%)}
+.cluster-lamp-slot[data-color="蓝色"].active img{filter:invert(65%) sepia(86%) saturate(1740%) hue-rotate(177deg) brightness(108%)}
+.cluster-main-display{height:270px;display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:center;gap:18px}
+.cluster-gauge{width:172px;height:172px;margin:auto;border:2px solid #1d587d;border-radius:50%;display:grid;place-content:center;text-align:center;box-shadow:inset 0 0 40px rgba(35,128,180,.12),0 0 30px rgba(24,121,177,.08)}
+.cluster-gauge:before{content:'';position:absolute}.cluster-gauge span,.cluster-gauge small{color:#668aa2;font-size:10px}.cluster-gauge b{font-size:35px;font-weight:500}
+.cluster-speed{text-align:center}.cluster-speed small,.cluster-speed span{display:block;color:#7392a7;font-size:10px}.cluster-speed strong{display:block;font-size:78px;line-height:1;font-weight:300;letter-spacing:-.06em}.cluster-speed b{display:inline-grid;place-items:center;width:37px;height:37px;margin-top:14px;border:1px solid #3493c8;border-radius:50%;color:#73d4ff;font-size:21px}
+.cluster-shared-row{padding:5px 14px;border-radius:13px;background:rgba(28,64,88,.22)}
+.cluster-dynamic-row{justify-content:flex-start;width:251px;margin:auto}.cluster-footer{margin-top:17px}.cluster-lane{width:110px;height:16px;border-left:2px solid #31566e;border-right:2px solid #31566e;transform:perspective(20px) rotateX(18deg)}
+.cluster-controls{padding:16px;max-height:680px;overflow:hidden;display:flex;flex-direction:column}
+.cluster-control-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.cluster-control-head b,.cluster-control-head span{display:block}.cluster-control-head span{margin-top:3px;color:var(--muted);font-size:10px}.cluster-control-head button,.cluster-scenarios button{border:1px solid var(--line-2);border-radius:7px;background:#fff;padding:7px 9px;color:#476077;font-size:10px}
+.cluster-scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:13px 0}.cluster-scenarios button:hover{border-color:var(--blue);color:var(--blue)}
+.cluster-class-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:10px}.cluster-class-tabs button{border:0;border-radius:7px;padding:8px 5px;background:#edf2f6;color:#5c6b7d;font-size:10px}.cluster-class-tabs button.active{background:var(--blue);color:#fff}
+.cluster-icon-controls{overflow:auto;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-right:3px}.cluster-control-item{min-width:0;border:1px solid var(--line);border-radius:9px;background:#fff;padding:7px;display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:7px;text-align:left}.cluster-control-item img{width:34px;height:34px;object-fit:contain}.cluster-control-item span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#536173;font-size:9px}.cluster-control-item.active{border-color:#2f75b5;background:#f0f7fd;box-shadow:inset 3px 0 #2f75b5}.cluster-control-item.active span{color:#173d5f;font-weight:700}
+@media(max-width:1100px){.cluster-workbench{grid-template-columns:1fr}.cluster-controls{max-height:none}.cluster-icon-controls{max-height:360px}.cluster-screen{min-height:560px}.cluster-main-display{height:235px}.cluster-gauge{width:145px;height:145px}}
+@media(max-width:720px){#view-cluster{padding:16px}.cluster-screen{padding:14px 10px;min-height:520px}.cluster-main-display{grid-template-columns:1fr}.cluster-gauge{display:none}.cluster-speed strong{font-size:65px}.cluster-one-row{gap:4px;flex-wrap:wrap}.cluster-lamp-slot{width:36px;height:36px}.cluster-lamp-slot img{width:26px;height:26px}.cluster-icon-controls{grid-template-columns:1fr}}
+/* Panoramic cluster layout based on the supplied full/normal/layout references. */
+#view-cluster .cluster-workbench{grid-template-columns:1fr}
+#view-cluster .cluster-preview-card{padding:12px;border-radius:14px;background:#dde3e8}
+.cluster-display-modes{display:flex;justify-content:flex-end;gap:6px;margin-bottom:9px}
+.cluster-display-modes button{border:1px solid #c5d0da;border-radius:7px;background:#fff;padding:7px 12px;color:#506174;font-size:10px}
+.cluster-display-modes button.active{border-color:#2f75b5;background:#2f75b5;color:#fff}
+#view-cluster .cluster-screen{position:relative;width:100%;aspect-ratio:3.75/1;min-height:0;padding:0;border-radius:6px;background:#050708;overflow:hidden}
+.cluster-perimeter{position:absolute;z-index:5;display:flex;gap:2px}
+.cluster-top-left{left:1.1%;top:2.5%;max-width:45%}
+.cluster-top-right{right:1.1%;top:2.5%;max-width:34%;justify-content:flex-end}
+.cluster-left-rail{left:.5%;top:18%;bottom:auto;display:grid;grid-template-columns:repeat(2,36px);grid-auto-rows:36px;gap:2px;align-content:start}
+.cluster-right-rail{right:.5%;top:18%;bottom:auto;display:grid;grid-template-columns:repeat(2,36px);grid-auto-rows:36px;gap:2px;align-content:start}
+.cluster-bottom-left{left:1.2%;bottom:2.5%}
+#view-cluster .cluster-lamp-slot{width:36px;height:36px;border:0;border-radius:2px;background:transparent;box-shadow:none;cursor:pointer}
+#view-cluster .cluster-lamp-slot img{width:34px;height:34px;box-shadow:none;transform:scale(1.42);transform-origin:center;object-fit:contain}
+#view-cluster .cluster-lamp-slot.active{border:0;box-shadow:none;background:transparent}
+#view-cluster .cluster-lamp-slot.active img{opacity:1;filter:invert(1) sepia(1) saturate(7) hue-rotate(345deg) brightness(.96)}
+#view-cluster .cluster-lamp-slot[data-color="红色"].active img{filter:invert(1) sepia(1) saturate(9) hue-rotate(305deg) brightness(.9)}
+#view-cluster .cluster-lamp-slot[data-color="绿色"].active img{filter:invert(1) sepia(1) saturate(8) hue-rotate(62deg) brightness(.9)}
+#view-cluster .cluster-lamp-slot[data-color="蓝色"].active img{filter:invert(1) sepia(1) saturate(8) hue-rotate(165deg) brightness(.95)}
+#view-cluster .cluster-lamp-slot[data-color="无颜色要求"].active img{filter:invert(96%)}
+#view-cluster .cluster-lamp-slot.empty{display:block;visibility:hidden;pointer-events:none}
+#view-cluster .cluster-lamp-slot.empty:after{content:''}
+.cluster-center-ui{position:absolute;inset:0;z-index:1;color:#fff}
+.cluster-center-top{position:absolute;left:0;right:0;top:2%;height:76px;color:#d9e1e5;font-size:12px}.cluster-center-top>span:first-child{position:absolute;left:38%}.cluster-center-top>span:last-child{position:absolute;right:30%}
+.cluster-center-top b{position:absolute;left:50%;top:0;transform:translateX(-50%);text-align:center}.cluster-center-top strong{display:block;font-size:72px;line-height:.8;font-weight:500;letter-spacing:-4px}.cluster-center-top small{font-size:12px;font-weight:400;letter-spacing:0}
+.cluster-route{position:absolute;left:11%;top:28%;display:flex;gap:14px;align-items:flex-start}.cluster-route>b{font-size:58px;line-height:1}.cluster-route strong,.cluster-route span{display:block}.cluster-route strong{font-size:25px}.cluster-route span{margin-top:5px;color:#cdd5db;font-size:13px}
+.cluster-road{position:absolute;left:32%;right:29%;top:25%;bottom:0;overflow:hidden;background:linear-gradient(180deg,#101a25 0,#0a0d12 32%,#1a1b1e 33%,#08090b 100%);clip-path:polygon(20% 0,80% 0,100% 100%,0 100%)}
+.cluster-horizon{position:absolute;left:0;right:0;top:28%;height:2px;background:#607386;box-shadow:0 0 18px #38617e}.cluster-road-lines{position:absolute;inset:32% 7% 0;background:repeating-linear-gradient(75deg,transparent 0 18%,rgba(255,255,255,.8) 19% 20%,transparent 21% 39%);opacity:.55;clip-path:polygon(34% 0,66% 0,100% 100%,0 100%)}.cluster-car{position:absolute;left:45%;bottom:15%;width:54px;height:28px;border-radius:25px 25px 8px 8px;background:#d9dee2;color:#cf342b;text-align:center;line-height:36px;box-shadow:0 9px 15px #000}
+.cluster-music{position:absolute;right:8%;top:30%;text-align:center}.cluster-music div{width:48px;height:48px;margin:auto;border-radius:8px;background:linear-gradient(135deg,#9a5f36,#2f68a1);display:grid;place-items:center;font-size:22px}.cluster-music span{display:block;margin-top:8px;font-size:13px}
+.cluster-bottom-data{position:absolute;left:6%;right:5%;bottom:3%;display:flex;justify-content:space-between;align-items:center;color:#e1e6e9;font-size:11px}
+.cluster-turn-signals{position:absolute;left:38%;right:38%;top:31%;display:flex;justify-content:space-between;align-items:center}.cluster-turn-signals button{border:0;background:transparent;color:#5ee235;font-size:48px;line-height:1;cursor:pointer;opacity:.32}.cluster-turn-signals button.active,.cluster-screen.mode-all .cluster-turn-signals button,.cluster-screen.mode-layout .cluster-turn-signals button{opacity:1}.cluster-turn-signals button.active{animation:clusterBlink .85s step-end infinite}@keyframes clusterBlink{50%{opacity:.2}}
+.cluster-speed-limit{position:absolute;z-index:8;left:38.2%;top:18%;width:43px;height:43px;padding:0;border:4px solid #e43d32;border-radius:50%;background:#fff;color:#111;font-size:18px;font-weight:800;line-height:35px;text-align:center;cursor:pointer}.cluster-speed-limit:hover,.cluster-speed-limit:focus{outline:2px solid rgba(255,255,255,.7);outline-offset:3px}.cluster-speed-limit:after{content:attr(data-info);position:absolute;left:50%;top:calc(100% + 9px);width:220px;padding:8px 10px;border:1px solid #394b5a;border-radius:6px;background:#101820;color:#eef4f7;font-size:9px;font-weight:400;line-height:1.55;text-align:left;white-space:normal;transform:translateX(-50%);opacity:0;pointer-events:none;box-shadow:0 5px 14px rgba(0,0,0,.35)}.cluster-speed-limit:hover:after,.cluster-speed-limit:focus:after{opacity:1}
+.cluster-drive-summary{position:absolute;left:42%;right:42%;top:43%;display:grid;place-items:center;color:#d9e1e5}.cluster-drive-summary span{color:#73dd58;font-size:15px;font-weight:700}.cluster-drive-summary b{display:grid;place-items:center;width:34px;height:34px;margin:7px;border:1px solid #66727c;border-radius:7px;font-size:19px}.cluster-drive-summary small{font-size:9px;color:#73818c;white-space:nowrap}
+.cluster-energy-bars{position:absolute;left:3.2%;right:3.2%;bottom:2.8%;display:grid;grid-template-columns:1.05fr 1.05fr 1.25fr 1.05fr .65fr;align-items:end;gap:4.5%}.cluster-energy-bars>div{min-width:0;position:relative;color:#f1f3f4}.cluster-energy-bars span{display:inline-block;margin-right:6px;color:#ef773e;font-size:22px;line-height:1}.cluster-energy-bars b{font-size:19px;line-height:1;font-weight:600;white-space:nowrap}.cluster-energy-bars b small{color:#d6dadd;font-size:11px;font-weight:400}.cluster-energy-bars i{display:block;height:5px;margin-top:7px;border-radius:3px;background:#3a3d40;overflow:hidden}.cluster-energy-bars em{display:block;height:100%;background:#ef7045}.cluster-energy-bars .fuel span{color:#ef8a29}.cluster-energy-bars .fuel em{background:#ef8a29}.cluster-energy-bars .cltc b{font-size:22px}.cluster-energy-bars .power{text-align:right}.cluster-energy-bars .power i{margin-left:22%}.cluster-energy-bars .power em{background:#e7e7e7}.cluster-energy-bars .odo{text-align:right}.cluster-energy-bars .odo b{font-size:18px}
+.cluster-layout-legend{display:none;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.cluster-layout-legend span{padding:8px 10px;border-radius:6px;font-size:10px}.cluster-layout-legend .one{background:#ffe0dc;color:#9f3027}.cluster-layout-legend .two{background:#e1e7ff;color:#40548f}.cluster-layout-legend .three{background:#eceff2;color:#5b6774}
+.cluster-screen.mode-layout .cluster-center-ui{opacity:.18}.cluster-screen.mode-layout .cluster-lamp-slot{border-color:rgba(255,255,255,.24)}.cluster-screen.mode-layout #clusterClassOne .cluster-lamp-slot{background:rgba(212,67,55,.38)}.cluster-screen.mode-layout #clusterClassTwoTop .cluster-lamp-slot,.cluster-screen.mode-layout #clusterClassTwo .cluster-lamp-slot{background:rgba(73,91,171,.4)}.cluster-screen.mode-layout #clusterClassThree .cluster-lamp-slot,.cluster-screen.mode-layout #clusterClassThreeBottom .cluster-lamp-slot{background:rgba(143,150,158,.38)}
+.cluster-screen.mode-normal .cluster-lamp-slot:not(.active){opacity:0;pointer-events:none}
+.cluster-lamp-slot:hover{z-index:30;background:transparent;outline:1px solid rgba(255,255,255,.38)}
+.cluster-lamp-slot:after{content:attr(data-info);position:absolute;left:50%;top:calc(100% + 7px);width:220px;padding:8px 10px;border:1px solid #394b5a;border-radius:6px;background:#101820;color:#eef4f7;font-size:9px;line-height:1.55;text-align:left;white-space:normal;transform:translateX(-50%);opacity:0;pointer-events:none;transition:opacity .12s;box-shadow:0 5px 14px rgba(0,0,0,.35)}
+.cluster-lamp-slot:hover:after,.cluster-lamp-slot:focus:after{opacity:1}
+.cluster-perimeter:has(.cluster-lamp-slot:hover),.cluster-perimeter:has(.cluster-lamp-slot:focus){z-index:60}
+.cluster-top-left .cluster-lamp-slot:nth-child(-n+4):after{left:0;right:auto;transform:none}
+.cluster-top-right .cluster-lamp-slot:nth-last-child(-n+4):after{left:auto;right:0;transform:none}
+.cluster-left-rail .cluster-lamp-slot:after{left:calc(100% + 7px);top:0;transform:none}.cluster-right-rail .cluster-lamp-slot:after{left:auto;right:calc(100% + 7px);top:0;transform:none}.cluster-bottom-left .cluster-lamp-slot:after{top:auto;bottom:calc(100% + 7px)}
+.cluster-preview-card:has(.mode-layout) .cluster-layout-legend{display:grid}
+#view-cluster .cluster-controls{max-height:350px}.cluster-icon-controls{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:950px){#view-cluster .cluster-screen{aspect-ratio:2.5/1}.cluster-center-top strong{font-size:48px}.cluster-route{left:9%}.cluster-music{right:5%}.cluster-icon-controls{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){#view-cluster .cluster-screen{aspect-ratio:1.8/1}.cluster-route,.cluster-music{display:none}.cluster-road{left:17%;right:17%}.cluster-center-top{left:30%;right:25%}.cluster-bottom-data span:nth-child(2),.cluster-bottom-data span:nth-child(3){display:none}.cluster-layout-legend{grid-template-columns:1fr}.cluster-icon-controls{grid-template-columns:1fr 1fr}}
+/* Clear product split: the icon library owns visual assets; the rule library
+   focuses on legal text, conditions and design decisions. */
+#view-rules .rule-item{
+  min-height:0;
+  grid-template-columns:minmax(0,1fr);
+  padding:16px 18px;
+}
+#view-rules .rule-icon{display:none}
+#view-rules .rule-main{width:100%}
+#view-rules .rule-row h3{font-size:19px}
 </style></head><body>
 <div class="app">
 <aside class="sidebar">
 <div class="brand"><div class="brand-mark">规</div><div><h1>智能座舱法规<br/>设计知识库</h1></div></div>
 <nav class="nav">
 <button class="nav-btn active" data-view="home"><span class="nav-ico"></span><span>首页</span></button>
-<button class="nav-btn" data-view="rules"><span class="nav-ico"></span><span>设计规则库</span></button>
+<button class="nav-btn release-hidden" data-view="cluster" aria-hidden="true" tabindex="-1"><span class="nav-ico"></span><span>动态仪表</span></button>
 <button class="nav-btn" data-view="icons"><span class="nav-ico"></span><span>标准图标库</span></button>
+<button class="nav-btn" data-view="rules"><span class="nav-ico"></span><span>设计规则库</span></button>
 <button class="nav-btn" data-view="regulations"><span class="nav-ico"></span><span>法规原文库</span></button>
 <button class="nav-btn" data-view="terms"><span class="nav-ico"></span><span>使用指南</span></button>
 </nav>
@@ -3680,7 +3887,7 @@ body,button,input,select{
 <div aria-label="状态显示快捷入口" class="decision-overview" id="decisionOverview"></div>
 <aside class="filter-panel horizontal-filter-panel"><div class="filter-panel-head"><div class="filter-title"><div><b>筛选条件</b><span id="activeFilterCount"></span></div></div><button class="clear-filter-btn" id="clearFilters">清空全部</button></div><div id="filters"></div></aside>
 <div class="library-layout">
-<section class="list-panel"><div class="list-toolbar"><b id="listCount"></b><select id="sortSelect"><option value="decision">按设计优先级</option><option value="source">按法规与条款</option><option value="name">按功能名称</option><option value="duty">按显示义务</option><option value="space">按空间策略</option><option value="effect">按法规效力</option></select></div><div class="rule-list" id="ruleList"></div></section>
+<section class="list-panel"><div class="list-toolbar"><b id="listCount"></b><select id="sortSelect"><option value="decision">按设计优先级</option><option value="source">按法规与条款</option><option value="name">按功能名称</option><option value="duty">按显示义务</option><option value="space">按空间策略</option><option value="effect">按条款约束</option></select></div><div class="rule-list" id="ruleList"></div></section>
 </div>
 </section>
 <section class="view" id="view-regulations">
@@ -3702,11 +3909,37 @@ body,button,input,select{
 </section>
 <section class="view" id="view-icons">
 <div class="page-head"><div><h2>标准图标库</h2></div><div class="count-pill" id="iconCountPill"></div></div>
-<div class="icon-filter-panel"><div class="icon-filter-head"><b>筛选条件</b><div class="icon-view-toggle" aria-label="图标库显示模式"><button class="active" data-icon-view="small" type="button" aria-label="画廊模式" title="画廊模式"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button><button data-icon-view="large" type="button" aria-label="详情模式" title="详情模式"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1"/><path d="M14 6h7M14 10h5M3 16h7M14 16h7M3 20h7M14 20h5"/></svg></button></div></div><div class="icon-toolbar"><input class="search-box" id="iconSearch" placeholder="搜索图标或功能"/><select class="native-icon-filter" id="iconRegulation"></select><select class="native-icon-filter" id="iconDisplay"></select><select class="native-icon-filter" id="iconDuration"></select><select class="native-icon-filter" id="iconSpace"></select><select class="native-icon-filter" id="iconColor"></select><select class="native-icon-filter" id="iconDomain"></select><div id="iconFilterDropdowns"></div></div></div>
+<h3 class="icon-class-title">快捷筛选</h3>
+<p class="icon-class-note">灯位类别是项目编排策略，不等同于标准性质或条款约束：一类为专用灯位，二类为可复用固定灯位，三类为动态补位；仅用于物理控件的标志不分类。</p>
+<div aria-label="指示灯分类快捷入口" class="decision-overview icon-class-overview" id="iconClassOverview"></div>
+<div class="icon-filter-panel"><div class="icon-filter-head"><b>筛选条件</b><div class="icon-filter-actions"><button class="icon-edit-btn" id="iconEditMode" type="button">编辑分类</button><div class="icon-view-toggle" aria-label="图标库显示模式"><button class="active" data-icon-view="small" type="button" aria-label="画廊模式" title="画廊模式"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button><button data-icon-view="large" type="button" aria-label="详情模式" title="详情模式"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1"/><path d="M14 6h7M14 10h5M3 16h7M14 16h7M3 20h7M14 20h5"/></svg></button></div></div></div><div class="icon-toolbar"><input class="search-box" id="iconSearch" placeholder="搜索图标或功能"/><select class="native-icon-filter" id="iconRegulation"></select><select class="native-icon-filter" id="iconColor"></select><select class="native-icon-filter" id="iconDomain"></select><div id="iconFilterDropdowns"></div></div></div>
 <div class="icon-grid" id="iconGrid"></div>
 </section>
+<section class="view release-hidden" id="view-cluster" aria-hidden="true">
+<div class="page-head"><div><h2>动态仪表</h2><p>悬停查看指示灯信息，点击进入完整法规解读。</p></div><div class="count-pill" id="clusterActiveCount">0 个灯已点亮</div></div>
+<div class="cluster-workbench">
+<section class="cluster-preview-card">
+<div class="cluster-display-modes"><button class="active" data-cluster-mode="normal">常规状态</button><button data-cluster-mode="all">全量点亮</button><button data-cluster-mode="layout">灯位示意</button></div>
+<div class="cluster-screen mode-normal" id="clusterScreen">
+<div class="cluster-perimeter cluster-top-left" id="clusterClassOne"></div>
+<div class="cluster-perimeter cluster-top-right" id="clusterClassTwoTop"></div>
+<div class="cluster-perimeter cluster-left-rail" id="clusterClassThree"></div>
+<div class="cluster-perimeter cluster-right-rail" id="clusterClassTwo"></div>
+<div class="cluster-perimeter cluster-bottom-left" id="clusterClassThreeBottom"></div>
+<div class="cluster-center-ui">
+<div class="cluster-center-top"><span id="clusterClock">18:20</span><b><strong id="clusterSpeed">120</strong><small>km/h</small></b><span>−35°C</span></div>
+<button class="cluster-speed-limit" type="button" data-cluster-rule="rule-137" data-info="道路限制速度标志｜GB 5768.2—2022 · 5.37 / 图64｜当前识别限速：80 km/h" aria-label="当前道路限制速度80公里每小时">80</button>
+<div class="cluster-turn-signals"><button class="left" data-cluster-rule="rule-010" aria-label="左转向灯" title="转向信号灯｜一类指示灯｜GB 4094—2016 · 5.1.9">←</button><button class="right" data-cluster-rule="rule-010" aria-label="右转向灯" title="转向信号灯｜一类指示灯｜GB 4094—2016 · 5.1.9">→</button></div>
+<div class="cluster-drive-summary"><span>READY</span><b>D</b><small>驾驶辅助已开启</small></div>
+<div class="cluster-energy-bars"><div class="battery"><span>▣</span><b>104<small> km｜3%</small></b><i><em style="width:3%"></em></i></div><div class="fuel"><span>▰</span><b>375<small> km</small></b><i><em style="width:58%"></em></i></div><div class="cltc"><b>479<small> km CLTC</small></b></div><div class="power"><b>60<small>% PWR</small></b><i><em style="width:60%"></em></i></div><div class="odo"><b>999999<small> mile</small></b></div></div>
+</div>
+</div>
+<div class="cluster-layout-legend"><span class="one">一类：点亮时，该灯位不可被其他指示灯占用</span><span class="two">二类：固定灯位，熄灭后可复用</span><span class="three">三类：动态灯位，按时间顺序补位</span></div>
+</section>
+</div>
+</section>
 <section class="view" id="view-terms">
-<div class="page-head"><div><h2>系统使用指南</h2></div></div><div class="terms-grid" id="termsGrid"></div>
+<div class="page-head"><div><h2>使用指南</h2><p>先做三个判断，再进入法规详情。</p></div></div><div class="terms-grid" id="termsGrid"></div>
 </section>
 </main>
 <button class="back-to-top" id="backToTop" type="button" title="回到顶部" aria-label="回到顶部">↑</button>
@@ -3764,9 +3997,73 @@ RULES.push(
   {id:'rule-111',name:'制动能量回收瞬时功率',source:'GB/T 19836—2019 · 4.3.2～4.3.3',clause:'4.3.2～4.3.3',figure:'',original:'具有制动能量回收系统的电动汽车，车辆仪表宜显示回收瞬时电功率；如提供该功能，显示应符合驱动系统和制动能量回收系统的实际工作状态。',owner:'交互组',collaborator:'视觉组、动效组',keyPoints:'【法规效力】推荐性标准\n【规则主题】能量回收功率',color:'未规定',check:'驱动与回收方向编码一致，显示与实际能量流同步。',page:4,domain:'动力与能源',ruleLevel:'通用设计规则',applicableObject:'车辆仪表',regulationEffect:'推荐／允许',ruleTopic:'能量回收',ruleTopics:['功率显示','状态同步'],controlMarkRequirement:'/',displayObligation:'可选显示；采用即须合规',durationRule:'状态有效时必须提供',spaceStrategy:'可进入普通共用空间',relationSummary:'可用电流或百分比等单位代替功率单位。',regulationId:'GBT19836-2019'},
   {id:'rule-112',name:'车载储能装置剩余能量',source:'GB/T 19836—2019 · 4.5',clause:'4.5',figure:'',original:'纯电动汽车、插电式混合动力电动汽车应显示可充电储能装置荷电状态；燃料电池电动汽车应显示剩余氢气量。剩余能量降低至影响车辆行驶时，应通过明显的声或光信号提示驾驶员。',owner:'交互组',collaborator:'视觉组',keyPoints:'【法规效力】推荐性标准\n【规则主题】剩余能量；低能量提示',color:'未规定',check:'持续显示剩余能量，并验证影响行驶时的明显提示。',page:4,domain:'动力与能源',ruleLevel:'通用设计规则',applicableObject:'车辆仪表',regulationEffect:'条件强制',ruleTopic:'剩余能量',ruleTopics:['常驻显示','警告提示'],controlMarkRequirement:'/',displayObligation:'常驻状态显示',durationRule:'始终显示',spaceStrategy:'独立专用空间',relationSummary:'与 GB/T 4094.2—2017 图1关联。',regulationId:'GBT19836-2019'},
   {id:'rule-113',name:'电动汽车充电状态显示',source:'GB/T 19836—2019 · 4.6',clause:'4.6',figure:'',original:'传导充电时应显示车辆与充电连接装置的连接状态；无线充电时应显示原边设备与副边设备的耦合状态；宜显示荷电状态、已充电能量或预计完成时间等实时状态。',owner:'交互组',collaborator:'视觉组',keyPoints:'【法规效力】推荐性标准\n【规则主题】充电连接；充电进度',color:'未规定',check:'区分连接、耦合、充电中、完成和异常状态。',page:4,domain:'动力与能源',ruleLevel:'通用设计规则',applicableObject:'车辆仪表',regulationEffect:'条件强制',ruleTopic:'充电状态',ruleTopics:['连接状态','充电进度'],controlMarkRequirement:'/',displayObligation:'状态触发必显',durationRule:'状态有效时必须提供',spaceStrategy:'可进入普通共用空间',relationSummary:'与 GB/T 4094.2—2017 图4、图11关联。',regulationId:'GBT19836-2019'},
-  {id:'rule-114',name:'电动汽车关键故障警告',source:'GB/T 19836—2019 · 4.7及第1号修改单',clause:'4.7',figure:'',original:'出现绝缘故障、储能系统或驱动电机不能继续工作的故障、充电连接正确但无法充电，或燃料电池汽车封闭/半封闭空间氢气浓度达到规定值时，车辆仪表应显示故障警告信号。',owner:'交互组',collaborator:'视觉组',keyPoints:'【法规效力】推荐性标准\n【规则主题】关键故障警告',color:'红色',check:'覆盖绝缘、储能、驱动电机、充电及氢系统故障场景。',page:5,domain:'动力与能源',ruleLevel:'通用设计规则',applicableObject:'车辆仪表',regulationEffect:'条件强制',ruleTopic:'故障警告',ruleTopics:['故障报警','安全状态'],controlMarkRequirement:'/',displayObligation:'状态触发必显',durationRule:'持续至状态解除（不可取消）',spaceStrategy:'可进入普通共用空间',relationSummary:'已按 2022 年第1号修改单更新氢系统条款。',regulationId:'GBT19836-2019'}
+  {id:'rule-114',name:'电动汽车关键故障警告',source:'GB/T 19836—2019 · 4.7及第1号修改单',clause:'4.7',figure:'',original:'出现绝缘故障、储能系统或驱动电机不能继续工作的故障、充电连接正确但无法充电，或燃料电池汽车封闭/半封闭空间氢气浓度达到规定值时，车辆仪表应显示故障警告信号。',owner:'交互组',collaborator:'视觉组',keyPoints:'【法规效力】推荐性标准\n【规则主题】关键故障警告',color:'红色',check:'覆盖绝缘、储能、驱动电机、充电及氢系统故障场景。',page:5,domain:'动力与能源',ruleLevel:'通用设计规则',applicableObject:'车辆仪表',regulationEffect:'条件强制',ruleTopic:'故障警告',ruleTopics:['故障报警','安全状态'],controlMarkRequirement:'/',displayObligation:'状态触发必显',durationRule:'持续至状态解除（不可取消）',spaceStrategy:'可进入普通共用空间',relationSummary:'已按 2022 年第1号修改单更新氢系统条款。',regulationId:'GBT19836-2019'},
+  ...[
+    ['前向碰撞预警／自动紧急制动','表1','图1',8,'红色或黄色','条件强制','状态触发必显','碰撞预警与制动'],
+    ['车道偏离预警／车道偏离抑制','表1','图2',8,'红色或黄色','条件强制','状态触发必显','车道偏离与干预'],
+    ['介入请求／脱手报警','表1、表2','图3',9,'红色','条件强制','状态触发必显','驾驶员接管'],
+    ['驾驶员注意力监测（图4方案）','表2','图4',9,'红色或黄色','推荐／允许','可选显示；采用即须合规','驾驶员监测'],
+    ['驾驶员注意力监测（图5方案）','表2','图5',9,'红色或黄色','推荐／允许','可选显示；采用即须合规','驾驶员监测'],
+    ['盲区监测','表2','图6',9,'黄色或红色','推荐／允许','可选显示；采用即须合规','盲区监测'],
+    ['紧急转向辅助','表2','图7',10,'未规定','推荐／允许','可选显示；采用即须合规','转向辅助'],
+    ['开门预警','表3','图8',10,'红色或黄色','推荐／允许','可选显示；采用即须合规','开门预警'],
+    ['抬头显示','表3','图9',10,'未规定','推荐／允许','可选显示；采用即须合规','显示功能'],
+    ['全景影像监视','表3','图10',11,'黄色（故障）','推荐／允许','可选显示；采用即须合规','环境监视'],
+    ['夜视系统','表3','图11',11,'红色或黄色','推荐／允许','可选显示；采用即须合规','环境监视'],
+    ['后方横向交通辅助','表3','图12',11,'红色或黄色','推荐／允许','可选显示；采用即须合规','横向交通辅助'],
+    ['前方横向交通辅助','表3','图13',11,'红色或黄色','推荐／允许','可选显示；采用即须合规','横向交通辅助'],
+    ['倒车辅助','表3','图14',11,'未规定','推荐／允许','可选显示；采用即须合规','泊车辅助'],
+    ['智能泊车辅助','表3','图15',11,'黄色（故障）','推荐／允许','可选显示；采用即须合规','泊车辅助'],
+    ['全速自适应巡航','表3','图16',12,'黄色（故障）','推荐／允许','可选显示；采用即须合规','巡航控制'],
+    ['单车道行驶控制','表3','图17',12,'黄色（故障）','推荐／允许','可选显示；采用即须合规','车道控制'],
+    ['多车道行驶控制','表3','图18',12,'黄色（故障）','推荐／允许','可选显示；采用即须合规','车道控制'],
+    ['车道居中控制','表3','图19',12,'黄色（故障）','推荐／允许','可选显示；采用即须合规','车道控制'],
+    ['高级驾驶辅助系统','表3','图20',12,'未规定','推荐／允许','可选显示；采用即须合规','驾驶辅助'],
+    ['自动驾驶（图21方案）','表3','图21',13,'黄色（故障）','推荐／允许','可选显示；采用即须合规','自动驾驶'],
+    ['自动驾驶（图22方案）','表3','图22',13,'黄色（故障）','推荐／允许','可选显示；采用即须合规','自动驾驶']
+  ].map((x,i)=>({id:`rule-${String(115+i).padStart(3,'0')}`,name:x[0],source:`GB/T 44298—2024 · 4.1 / ${x[1]} / ${x[2]}`,clause:'4.1',figure:x[2],original:`${x[1]}规定的${x[0]}标志，形状见${x[2]}；显示颜色及故障、报警状态应按表中要求执行。`,owner:'视觉组',collaborator:'交互组',keyPoints:`【法规效力】推荐性国家标准\n【规则主题】${x[7]}\n【颜色】${x[4]}`,color:x[4],check:`核对${x[0]}的图形、状态语义和显示颜色。`,page:x[3],domain:'智能驾驶',icon:`icons-square/rule-${String(115+i).padStart(3,'0')}.png`,ruleLevel:'具体标识',applicableObject:'操纵件／指示器／信号装置',regulationEffect:x[5],ruleTopic:x[7],ruleTopics:['图形构成','颜色规定',x[7]],controlMarkRequirement:'可选标识；采用即须合规',displayObligation:x[6],durationRule:'状态有效时必须提供',spaceStrategy:'可进入普通共用空间',relationSummary:'图形及用途按 GB/T 44298—2024 对应表格和图号核对。',regulationId:'GBT44298-2024'})),
+  {id:'rule-137',name:'道路限制速度标志',source:'GB 5768.2—2022 · 5.37 / 图64',clause:'5.37',figure:'图64',original:'限制速度标志表示在该标志至解除限制速度标志或另一不同限速值标志的路段内，机动车行驶速度不准超过标志所示数值；图中数字仅为示例。',owner:'视觉组',collaborator:'交互组',keyPoints:'【法规效力】强制性国家标准\n【规则主题】道路限速标志\n【关键约束】红圈、白底、黑色数值；数值随道路限速变化。',color:'红、白、黑',check:'仪表显示的限速数值和标志构成应与道路标志语义一致。',page:47,domain:'智能驾驶',ruleLevel:'通用设计规则',applicableObject:'交通标志识别显示',regulationEffect:'强制',ruleTopic:'限速标志',ruleTopics:['图形构成','数值显示'],controlMarkRequirement:'/',displayObligation:'识别有效时显示',durationRule:'状态有效时必须提供',spaceStrategy:'可进入普通共用空间',relationSummary:'GB/T 44298—2024 表3的交通标志识别功能引用 GB 5768.2；具体数字不是固定图标，因此不绑定单一图片。',regulationId:'GB5768.2-2022'},
+  {id:'rule-138',name:'安全带提醒视觉标志',source:'GB 14166—2024 · 6.4.2.1 / 图4',clause:'6.4.2.1',figure:'图4',original:'视觉提醒信号应位于驾驶员昼夜均易于看见和识别的位置，并与其他提醒信号相区别；视觉提醒可常亮或闪烁。',owner:'交互组',collaborator:'视觉组、动效组',keyPoints:'【法规效力】强制\n【规则主题】安全带视觉提醒',color:'见 GB 4094',check:'昼夜可见、易识别，并验证常亮或闪烁状态。',page:28,domain:'乘员安全',ruleLevel:'通用设计规则',applicableObject:'安全带提醒装置',regulationEffect:'强制',ruleTopic:'安全带提醒',ruleTopics:['位置要求','显示状态'],controlMarkRequirement:'/',displayObligation:'状态触发必显',durationRule:'按第一级／第二级提醒持续时间执行',spaceStrategy:'独立专用空间',relationSummary:'驾驶员及同排乘员的颜色和符号应符合 GB 4094；复用现有通用安全带图标，不新增重复图标。',regulationId:'GB14166-2024'},
+  {id:'rule-139',name:'安全带第一级与第二级提醒',source:'GB 14166—2024 · 6.4.2.3～6.4.2.4',clause:'6.4.2.3～6.4.2.4',figure:'',original:'第一级提醒至少提供规定时长的视觉信号；第二级提醒在距离、车速或持续时间达到阈值后，提供至少30秒的视觉和听觉提醒。',owner:'交互组',collaborator:'动效组、声音组',keyPoints:'【法规效力】强制\n【规则主题】提醒升级与持续时间',color:'见 GB 4094',check:'验证前后排提醒时长、升级阈值、视觉与听觉联动及重新激活。',page:29,domain:'乘员安全',ruleLevel:'通用设计规则',applicableObject:'安全带提醒装置',regulationEffect:'强制',ruleTopic:'安全带提醒时序',ruleTopics:['持续规则','听觉提醒'],controlMarkRequirement:'/',displayObligation:'状态触发必显',durationRule:'一级前排≥30s、后排≥60s；二级视觉＋听觉≥30s',spaceStrategy:'独立专用空间',relationSummary:'与 UN R174 第5.2条要求对应。',regulationId:'GB14166-2024'},
+  {id:'rule-140',name:'后排座位安全带状态显示',source:'GB 14166—2024 · 6.4.4；UN R174 · 5.4',clause:'6.4.4 / 5.4',figure:'',original:'后排视觉提醒应让驾驶员识别未系安全带的乘坐位置；其颜色可以不是红色，符号可以不同于通用安全带符号，并可共用一个指示信号。',owner:'交互组',collaborator:'视觉组',keyPoints:'【法规效力】强制\n【规则主题】后排座位识别\n【关键约束】必须能识别对应位置，但具体 L/M/R 图形并非统一标准图标。',color:'可非红色',check:'逐座验证占用、未系、解开和可移动座椅连接状态。',page:29,domain:'乘员安全',ruleLevel:'通用设计规则',applicableObject:'后排安全带提醒装置',regulationEffect:'强制',ruleTopic:'座位状态显示',ruleTopics:['座位映射','状态显示'],controlMarkRequirement:'/',displayObligation:'状态触发必显',durationRule:'按提醒等级执行',spaceStrategy:'可进入普通共用空间',relationSummary:'参考仪表中的 L/M/R 组合属于制造商可定义表达，按要求继续留空，不作为法规标准图标导入。',regulationId:'GB14166-2024'},
+  {id:'rule-141',name:'脱手报警',source:'GB/T 44298—2024 · 4.2 / 表2 / 图3',clause:'4.2',figure:'图3',original:'如果智能网联汽车装备了脱手报警信号装置，其图形标志可不标示；如果标示，应符合表2规定。脱手报警为红色；如有多个报警阶段，最后阶段为红色视为满足要求。',owner:'交互组',collaborator:'视觉组、动效组',keyPoints:'【标准性质】推荐性国家标准\n【条款约束】可不标示；采用即合规\n【颜色】红色',color:'红色',check:'区分脱手报警与介入请求；多阶段报警的最后阶段必须为红色。',page:10,domain:'智能驾驶',icon:'icons-square/rule-117.png',ruleLevel:'具体标识',applicableObject:'信号装置',regulationEffect:'推荐／允许',ruleTopic:'脱手报警',ruleTopics:['图形构成','颜色规定','驾驶员接管'],controlMarkRequirement:'/',displayObligation:'可选显示；采用即须合规',durationRule:'状态有效时必须提供',spaceStrategy:'可进入普通共用空间',relationSummary:'与介入请求共用图3，但两者标示义务不同，必须作为独立规则管理。',regulationId:'GBT44298-2024'}
 );
 
+/* Audited corrections: regulation strength, exact GB/T 44298 clause routing,
+   and staged applicability. Keep these explicit so the published data has one
+   authoritative source instead of relying on browser-local edits. */
+const RULE_CORRECTIONS={
+  'rule-008':{regulationEffect:'强制'},'rule-012':{regulationEffect:'强制'},'rule-013':{regulationEffect:'强制'},
+  'rule-014':{regulationEffect:'强制'},'rule-015':{regulationEffect:'强制'},'rule-017':{regulationEffect:'强制'},
+  'rule-026':{regulationEffect:'强制'},'rule-027':{regulationEffect:'强制'},'rule-031':{regulationEffect:'强制'},
+  'rule-038':{regulationEffect:'推荐／允许'},'rule-039':{regulationEffect:'推荐／允许'},'rule-040':{regulationEffect:'推荐／允许'},
+  'rule-041':{regulationEffect:'推荐／允许'},'rule-044':{regulationEffect:'推荐／允许'},'rule-045':{regulationEffect:'推荐／允许'},
+  'rule-115':{clause:'4.1',source:'GB/T 44298—2024 · 4.1 / 表1 / 图1',original:'如果智能网联汽车装备了前向碰撞预警或自动紧急制动相关装置，其图形标志应标示并符合表1。报警或预警为红色或黄色，故障或失效为黄色，进入自动紧急制动阶段为红色。',controlMarkRequirement:'控件存在时必须标识'},
+  'rule-116':{clause:'4.1',source:'GB/T 44298—2024 · 4.1 / 表1 / 图2',original:'如果智能网联汽车装备了车道偏离预警或车道偏离抑制相关装置，其图形标志应标示并符合表1。报警或激活为红色，故障或失效为黄色。',controlMarkRequirement:'控件存在时必须标识'},
+  'rule-117':{name:'介入请求',clause:'4.1',source:'GB/T 44298—2024 · 4.1 / 表1 / 图3',original:'如果智能网联汽车装备了介入请求信号装置，其图形标志应标示并符合表1。介入请求为红色；如有多个提示阶段，最后阶段为红色视为满足要求。',color:'红色',ruleTopic:'驾驶员介入请求',ruleTopics:['图形构成','颜色规定','驾驶员接管'],controlMarkRequirement:'控件存在时必须标识'},
+  'rule-118':{clause:'4.2',source:'GB/T 44298—2024 · 4.2 / 表2 / 图4'},'rule-119':{clause:'4.2',source:'GB/T 44298—2024 · 4.2 / 表2 / 图5'},
+  'rule-120':{clause:'4.2',source:'GB/T 44298—2024 · 4.2 / 表2 / 图6'},'rule-121':{clause:'4.2',source:'GB/T 44298—2024 · 4.2 / 表2 / 图7'},
+  'rule-122':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图8'},'rule-123':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图9',displayObligation:'不涉及屏幕显示',durationRule:'/',spaceStrategy:'控件上或邻近'},
+  'rule-124':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图10'},'rule-125':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图11'},
+  'rule-126':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图12'},'rule-127':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图13'},
+  'rule-128':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图14'},'rule-129':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图15'},
+  'rule-130':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图16'},'rule-131':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图17'},
+  'rule-132':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图18'},'rule-133':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图19'},
+  'rule-134':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图20'},'rule-135':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图21'},
+  'rule-136':{clause:'4.3',source:'GB/T 44298—2024 · 4.3 / 表3 / 图22'},
+  'rule-138':{applicability:'分阶段实施：驾驶员席要求已实施；同排其他乘员及后排相关要求按GB 14166—2024第9章执行'},
+  'rule-139':{applicability:'分阶段实施：不同乘坐位置的提醒要求按GB 14166—2024第9章对应日期执行'},
+  'rule-140':{applicability:'分阶段实施：驾驶员席已实施；同排其他乘员及后排相关要求按GB 14166—2024第9章执行'}
+};
+RULES.forEach(r=>{
+  Object.assign(r,RULE_CORRECTIONS[r.id]||{});
+  if(r.ruleLevel==='通用设计规则')r.ruleLevel='通用规则';
+  if(r.spaceStrategy==='普通共用空间')r.spaceStrategy='可进入普通共用空间';
+  if(/^rule-(118|119|120|121)$/.test(r.id))r.original=`如果智能网联汽车装备了${r.name}相关装置，其图形标志可不标示；如果标示，应符合GB/T 44298—2024表2的规定。`;
+  if(/^rule-(122|123|124|125|126|127|128|129|130|131|132|133|134|135|136)$/.test(r.id))r.original=`如果智能网联汽车装备了${r.name}相关装置，其图形标志可不标示；如果标示，可参照GB/T 44298—2024表3，也可自行设计。`;
+});
+
+const OMITTED_REGULATION_IDS=new Set(['GBT26773-2011','UNR121','UNR79','UNR130','UNR140','UNR152','UNR171','UNR178']);
 const REGULATIONS=[{
   id:'GB4094-2016',code:'GB 4094—2016',name:'汽车操纵件、指示器及信号装置的标志',
   jurisdiction:'中国',market:'中国',documentType:'国家标准',language:'中文',year:2016,
@@ -3796,17 +4093,47 @@ const REGULATIONS=[{
   toc:[['封面',1],['前言',2],['范围、引用文件与术语',3],['第4章 分类',3],['第5章 功能及性能要求',4],['第6章 试验条件',5],['第7章 试验方法',6],['第8章 实施',9]]
 },{id:'GBT19836-2019',code:'GB/T 19836—2019',name:'电动汽车仪表',jurisdiction:'中国',market:'中国',documentType:'推荐性国家标准',language:'中文',year:2019,publishDate:'2019-10-18',effectiveDate:'2020-05-01',status:'现行',pageCount:5,issuingBodies:'国家市场监督管理总局、中国国家标准化管理委员会',supersedes:['GB/T 19836—2005'],pdfUrl:'assets/gbt19836-2019.pdf',scope:'规定电动汽车仪表特有的指示或显示内容，适用于电动汽车。',mandatoryNote:'包含2022年第1号修改单；已更新燃料电池汽车氢系统故障警告依据。',toc:[['封面',1],['前言',2],['范围、引用文件与术语',3],['第4章 指示或显示内容',3],['第1号修改单',5]]
 },{id:'GBT4094.2-2017',code:'GB/T 4094.2—2017',name:'电动汽车 操纵件、指示器及信号装置的标志',jurisdiction:'中国',market:'中国',documentType:'推荐性国家标准',language:'中文',year:2017,publishDate:'2017-09-29',effectiveDate:'2019-07-01',status:'现行',pageCount:8,issuingBodies:'国家质量监督检验检疫总局、国家标准化管理委员会',supersedes:['GB/T 4094.2—2005'],pdfUrl:'assets/gbt4094.2-2017.pdf',scope:'规定电动汽车特有操纵件、指示器及信号装置的标志和信号装置显示颜色，适用于电动汽车。',mandatoryNote:'推荐性国家标准；标志的修改、颜色、位置和使用方法同时引用 GB 4094 的通用要求。',toc:[['封面',1],['前言',2],['范围与术语',4],['第4章 要求及表1～表3',4],['第5章 显示颜色',6],['第6章 标志形状',6],['图1～图8',7],['图9～图12及使用方法',8]]
-}];
+},{id:'GBT44298-2024',code:'GB/T 44298—2024',name:'智能网联汽车 操纵件、指示器及信号装置的标志',jurisdiction:'中国',market:'中国',documentType:'推荐性国家标准',language:'中文',year:2024,publishDate:'2024-08-23',effectiveDate:'2024-08-23',status:'现行',pageCount:23,issuingBodies:'国家市场监督管理总局、国家标准化管理委员会',supersedes:[],pdfUrl:'assets/gbt44298-2024.pdf',externalUrl:'https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=D573B1DD597A2632F8F412F6C79FB31E',scope:'规定智能网联汽车特有操纵件、指示器及信号装置标志的基本要求和信号装置显示颜色。',mandatoryNote:'已同步用户提供的法规原文。表1为车辆配备相应功能时应标示的标志；表2为可不标示标志；表3为参考标志。',toc:[['封面',1],['目录',3],['前言',5],['范围、引用文件与术语',7],['第4章 要求与表1',8],['表2 可不标示标志',9],['表3 参考标志',10],['第5章 显示颜色',13],['第6章 图1～图6',14],['图7～图12',15],['图13～图18',16],['图19～图22',17],['附录A 动态图形',18],['参考文献',20]]
+},{id:'GB5768.2-2022',code:'GB 5768.2—2022',name:'道路交通标志和标线 第2部分：道路交通标志',jurisdiction:'中国',market:'中国',documentType:'强制性国家标准',language:'中文',year:2022,publishDate:'2022-03-15',effectiveDate:'2022-10-01',status:'现行 · 已同步正文',pageCount:375,issuingBodies:'国家市场监督管理总局、国家标准化管理委员会',supersedes:['GB 5768.2—2009'],pdfUrl:'assets/gb5768.2-2022.pdf',externalUrl:'https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=15B1FC09EE1AE92F1A9EC97BA3C9E451',scope:'规定道路交通标志的分类、颜色、形状、字符、尺寸、图形及设置要求。',mandatoryNote:'已同步用户提供的原文。仪表交通标志识别功能涉及的限速等图形应结合本标准核对。',toc:[['封面',1],['目录与前言',2],['基本规定',9],['禁令标志',28],['限制速度标志',47],['指示标志',51],['制作图例',197],['附录',365]]
+},{id:'GB14166-2024',code:'GB 14166—2024',name:'机动车乘员用安全带和约束系统',jurisdiction:'中国',market:'中国',documentType:'强制性国家标准',language:'中文',year:2024,publishDate:'2024-09-29',effectiveDate:'2025-07-01',status:'现行 · 已同步正文',pageCount:83,issuingBodies:'国家市场监督管理总局、国家标准化管理委员会',supersedes:['GB 14166—2013'],pdfUrl:'assets/gb14166-2024.pdf',scope:'规定机动车乘员用安全带、约束系统以及安全带提醒装置的技术要求和试验方法。',mandatoryNote:'已同步用户提供的原文；安全带提醒重点见6.4，前排颜色和符号引用 GB 4094，后排允许采用不同符号但必须可识别具体乘坐位置。',toc:[['封面',1],['前言',3],['范围与术语',5],['技术要求',12],['6.4 安全带提醒装置',28],['试验方法',31],['附录M 提醒装置试验',78]]
+},{id:'UNR174',code:'UN R174',name:'Safety-Belt Reminders',jurisdiction:'联合国',market:'国际',documentType:'UN Regulation',language:'英文',year:2026,publishDate:'2026-02-20',effectiveDate:'2025-07-06',status:'现行 · 已同步正文',pageCount:17,issuingBodies:'UNECE WP.29',supersedes:[],pdfUrl:'assets/un-r174.pdf',externalUrl:'https://unece.org/transport/documents/2026/02/standards/addendum-173-un-regulation-no-174',scope:'规定 M、N 类车辆各乘坐位置安全带提醒装置的批准和技术要求。',mandatoryNote:'官方文档说明其法律有效文本为 ECE/TRANS/WP.29/2024/153；前排视觉符号引用 UN R121 表1第21项，后排允许不同符号。',toc:[['正文与适用范围',1],['批准要求',3],['第5章 安全带提醒要求',6],['前排与后排提醒',8],['附录与试验程序',12]]
+},{id:'GBT26773-2011',code:'GB/T 26773—2011',name:'智能运输系统 车道偏离报警系统 性能要求与检测方法',jurisdiction:'中国',market:'中国',documentType:'推荐性国家标准',language:'中文',year:2011,publishDate:'2011-07-20',effectiveDate:'2012-01-01',status:'现行 · 官方在线获取',pageCount:0,issuingBodies:'国家质量监督检验检疫总局、国家标准化管理委员会',supersedes:[],externalUrl:'https://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D7D9D2D3A7E05397BE0A0AB82A',scope:'规定车道偏离报警系统的功能与性能要求及检测方法。',mandatoryNote:'用于核对 LDWS 的激活、报警、故障与检测要求；图形标识需结合 GB/T 44298 或 ISO 2575。',toc:[['官方标准信息入口',0]]
+},{id:'ISO2575-2021',code:'ISO 2575:2021',name:'Road vehicles — Symbols for controls, indicators and tell-tales',jurisdiction:'国际',market:'国际',documentType:'ISO 国际标准',language:'英文',year:2021,publishDate:'2021-09',effectiveDate:'2021-09',status:'现行 · 需授权获取',pageCount:0,issuingBodies:'International Organization for Standardization',supersedes:['ISO 2575:2010'],externalUrl:'https://www.iso.org/standard/68409.html',scope:'规定道路车辆操纵件、指示器及信号装置使用的符号及部分显示颜色。',mandatoryNote:'ISO 全文受版权保护，系统仅同步官方标准页；采购授权版后可替换为本地 PDF。',toc:[['ISO 官方标准页',0]]
+},{id:'UNR121',code:'UN R121',name:'Identification of controls, tell-tales and indicators',jurisdiction:'联合国',market:'国际',documentType:'UN Regulation',language:'英文',year:2024,publishDate:'—',effectiveDate:'—',status:'已同步正文 · Rev.2',pageCount:19,issuingBodies:'UNECE WP.29',supersedes:[],pdfUrl:'assets/un-r121-rev2.pdf',externalUrl:'https://unece.org/transport/vehicle-regulations-wp29/standards/addenda-1958-agreement-regulations-121-140',scope:'统一车辆操纵件、信号装置和指示器的位置及识别要求。',mandatoryNote:'已同步联合国官方文档系统公开的 Revision 2 基础正文；后续修正案仍以 UNECE 官方目录为准。',toc:[['正文与适用范围',1],['要求',5],['Table 1 标志与颜色',8],['附录',16]]
+},{id:'UNR79',code:'UN R79',name:'Steering equipment',jurisdiction:'联合国',market:'国际',documentType:'UN Regulation',language:'英文',year:2023,publishDate:'—',effectiveDate:'—',status:'已同步正文 · Revision 5',pageCount:70,issuingBodies:'UNECE WP.29',supersedes:[],pdfUrl:'assets/un-r79-rev5.pdf',externalUrl:'https://unece.org/transport/documents/2023/10/working-documents/un-regulation-no-79-revision-5',scope:'规定车辆转向设备以及部分自动转向功能的型式批准要求。',mandatoryNote:'已同步 UNECE Revision 5 官方正文；后续 Amendments 需结合官方目录增量核对。',toc:[['正文',1],['要求',12],['附录',37]]
+},{id:'UNR130',code:'UN R130',name:'Lane Departure Warning System (LDWS)',jurisdiction:'联合国',market:'国际',documentType:'UN Regulation',language:'英文',year:2013,publishDate:'—',effectiveDate:'—',status:'已同步正文',pageCount:25,issuingBodies:'UNECE WP.29',supersedes:[],pdfUrl:'assets/un-r130.pdf',externalUrl:'https://unece.org/transport/vehicle-regulations-wp29/standards/addenda-1958-agreement-regulations-121-140',scope:'规定车道偏离报警系统的批准、性能、警告和故障显示要求。',mandatoryNote:'已同步联合国官方基础正文；修正案仍以 UNECE 目录为准。',toc:[['正文',1],['技术要求',7],['试验程序与附录',12]]
+},{id:'UNR140',code:'UN R140',name:'Electronic Stability Control (ESC)',jurisdiction:'联合国',market:'国际',documentType:'UN Regulation',language:'英文',year:2017,publishDate:'—',effectiveDate:'—',status:'已同步正文',pageCount:26,issuingBodies:'UNECE WP.29',supersedes:[],pdfUrl:'assets/un-r140.pdf',externalUrl:'https://unece.org/transport/vehicle-regulations-wp29/standards/addenda-1958-agreement-regulations-121-140',scope:'规定乘用车电子稳定控制系统的型式批准和性能要求。',mandatoryNote:'已同步联合国官方基础正文；识别图形同时核对 R121，修正案以官方目录为准。',toc:[['正文',1],['功能要求',7],['试验程序',10],['附录',20]]
+},{id:'UNR152',code:'UN R152',name:'Advanced Emergency Braking Systems for M1 and N1 vehicles',jurisdiction:'联合国',market:'国际',documentType:'UN Regulation',language:'英文',year:2020,publishDate:'—',effectiveDate:'—',status:'已同步正文',pageCount:26,issuingBodies:'UNECE WP.29',supersedes:[],pdfUrl:'assets/un-r152.pdf',externalUrl:'https://unece.org/transport/vehicle-regulations-wp29/standards/addenda-1958-agreement-regulations-141-160',scope:'规定乘用车和轻型商用车自动紧急制动系统的批准、性能及警告要求。',mandatoryNote:'已同步联合国官方基础正文；后续修订和修正案以 UNECE 官方目录为准。',toc:[['正文',1],['技术要求',7],['试验要求',13],['附录',20]]
+},{id:'UNR171',code:'UN R171',name:'Driver Control Assistance Systems (DCAS)',jurisdiction:'联合国',market:'国际',documentType:'UN Regulation',language:'英文',year:2024,publishDate:'2024-03',effectiveDate:'2024-09',status:'已同步正文',pageCount:80,issuingBodies:'UNECE WP.29',supersedes:[],pdfUrl:'assets/un-r171.pdf',externalUrl:'https://unece.org/media/transport/Vehicle-Regulations/press/395206',scope:'规定持续辅助车辆纵向和横向运动的驾驶控制辅助系统安全与性能要求。',mandatoryNote:'已同步联合国官方文档系统公开正文。',toc:[['正文',1],['系统要求',12],['驾驶员交互要求',28],['附录',45]]
+},{id:'UNR178',code:'UN R178',name:'Emergency Lane Keeping Systems (ELKS)',jurisdiction:'联合国',market:'国际',documentType:'UN Regulation',language:'英文',year:2025,publishDate:'—',effectiveDate:'—',status:'已同步正文',pageCount:26,issuingBodies:'UNECE WP.29',supersedes:[],pdfUrl:'assets/un-r178.pdf',externalUrl:'https://unece.org/transport/vehicle-regulations-wp29/standards',scope:'规定紧急车道保持系统的批准、干预、警告和故障要求。',mandatoryNote:'已同步联合国官方文档系统公开正文。',toc:[['正文',1],['技术要求',7],['试验与附录',14]]
+}].filter(r=>!OMITTED_REGULATION_IDS.has(r.id));
 const RULE_SOURCES=RULES.map(r=>{
   const localLocator=r.source.includes(' · ')?r.source.split(' · ').slice(1).join(' · '):([r.clause,r.figure].filter(Boolean).join(' / ')||r.source);
   const regulationId=r.regulationId||'GB4094-2016';
   return {id:`src-${r.id}-${regulationId}`,ruleId:r.id,regulationId,clauseId:r.clause||'',figureId:r.figure||'',locatorLabel:r.source||localLocator,localLocator,pdfPage:r.page||1,sourceText:r.original||'',sourceType:'primary'};
 });
 RULE_SOURCES.push({id:'src-rule-049-GB26149-2017',ruleId:'rule-049',regulationId:'GB26149-2017',clauseId:'5.2.1',figureId:'图1、图2',locatorLabel:'GB 26149—2017 · 5.2.1 / 图1、图2',localLocator:'5.2.1 / 图1、图2',pdfPage:4,sourceText:'5.2.1 轮胎胎压异常、故障报警信号装置标志应采用图1所示标志，或采用图2所示标志或经修改接近真实车辆外形的图2标志，并标示出胎压异常的轮胎。',sourceType:'supporting'});
-const DESIGN_RULES=RULES.map(r=>({...r,sources:RULE_SOURCES.filter(s=>s.ruleId===r.id)}));
+RULE_SOURCES.push(
+  {id:'src-rule-028-GB14166-2024',ruleId:'rule-028',regulationId:'GB14166-2024',clauseId:'6.4.2.1～6.4.3.2',figureId:'图4',locatorLabel:'GB 14166—2024 · 6.4.2.1～6.4.3.2 / 图4',localLocator:'6.4.2.1～6.4.3.2 / 图4',pdfPage:28,sourceText:'驾驶员及同排其他乘员的安全带视觉提醒信号颜色和符号应符合 GB 4094 的规定。',sourceType:'supporting'},
+  {id:'src-rule-028-UNR174',ruleId:'rule-028',regulationId:'UNR174',clauseId:'5.3.2',figureId:'',locatorLabel:'UN R174 · 5.3.2',localLocator:'5.3.2',pdfPage:8,sourceText:'The colour and symbol of the visual warning shall be as defined in item 21 in Table 1 of UN Regulation No. 121.',sourceType:'supporting'},
+  {id:'src-rule-138-UNR174',ruleId:'rule-138',regulationId:'UNR174',clauseId:'5.2.1',figureId:'',locatorLabel:'UN R174 · 5.2.1 Visual warning',localLocator:'5.2.1',pdfPage:6,sourceText:'The visual warning shall be readily visible and recognisable in daylight and at night, distinguishable from other alerts, and may be steady or flashing.',sourceType:'supporting'},
+  {id:'src-rule-139-UNR174',ruleId:'rule-139',regulationId:'UNR174',clauseId:'5.2.3～5.2.4',figureId:'',locatorLabel:'UN R174 · 5.2.3～5.2.4',localLocator:'5.2.3～5.2.4',pdfPage:7,sourceText:'The first-level warning is visual; the second-level warning is visual and audible for at least 30 seconds when the specified thresholds are met.',sourceType:'supporting'},
+  {id:'src-rule-140-UNR174',ruleId:'rule-140',regulationId:'UNR174',clauseId:'5.4',figureId:'',locatorLabel:'UN R174 · 5.4 Rear seat row(s)',localLocator:'5.4',pdfPage:8,sourceText:'The visual warning shall identify rear seating positions with unfastened belts. Its colour may be other than red and its symbol may differ from UN R121.',sourceType:'supporting'}
+);
+function standardNatureForSources(sources){
+  const reg=REGULATIONS.find(x=>x.id===sources?.[0]?.regulationId);
+  if(!reg)return '待核定';
+  if(/^GB\/T|^GB\/Z/.test(reg.code))return '推荐性国家标准';
+  if(/^GB\s/.test(reg.code))return '强制性国家标准';
+  if(/^UN\sR/.test(reg.code))return '联合国法规';
+  if(/^ISO\s/.test(reg.code))return 'ISO国际标准';
+  return reg.documentType||'其他标准';
+}
+const DESIGN_RULES=RULES.map(r=>{const sources=RULE_SOURCES.filter(s=>s.ruleId===r.id);return {...r,sources,standardNature:standardNatureForSources(sources)}});
 const HIDDEN_STANDALONE_RULE_IDS=new Set(['rule-050','rule-051']);
-const LIBRARY_RULES=DESIGN_RULES.filter(r=>!HIDDEN_STANDALONE_RULE_IDS.has(r.id));
-const SYMBOLS=DESIGN_RULES.filter(r=>r.icon).map(r=>({
+const isPublishedScreenRule=r=>r.displayObligation!=='不涉及屏幕显示';
+const LIBRARY_RULES=DESIGN_RULES.filter(r=>!HIDDEN_STANDALONE_RULE_IDS.has(r.id)&&isPublishedScreenRule(r));
+const SYMBOLS=DESIGN_RULES.filter(r=>r.icon&&isPublishedScreenRule(r)).map(r=>({
   id:`symbol-${r.id}`,name:r.name,icon:r.icon,ruleIds:[r.id],sourceIds:r.sources.map(s=>s.id),domain:r.domain,
   color:r.color,ruleLevel:r.ruleLevel,applicableObject:r.applicableObject,regulationEffect:r.regulationEffect,
   ruleTopics:r.ruleTopics,controlMarkRequirement:r.controlMarkRequirement,displayObligation:r.displayObligation,
@@ -3821,8 +4148,8 @@ SYMBOLS.forEach(s=>{if(s.icon)s.icon=squareIconPath(s.icon)});
 const safeStorage={get(key,fallback){try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v)}catch(e){return fallback}},set(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(e){}}};
 const state={view:'home',search:'',filters:{
   displayObligation:new Set(),regulationEffect:new Set(),durationRule:new Set(),
-  spaceStrategy:new Set(),domain:new Set(),owner:new Set()
-},selectedRule:null,selectedRegulation:null,sort:'decision',iconView:safeStorage.get('reg-kb-icon-view','small'),pdfPage:1,pdfTarget:'',favorites:new Set(safeStorage.get('reg-kb-favorites',[])),onlyFavorites:false};
+  spaceStrategy:new Set(),standardNature:new Set(),domain:new Set(),owner:new Set()
+},selectedRule:null,selectedRegulation:null,sort:'decision',iconView:safeStorage.get('reg-kb-icon-view','small'),iconClass:'',iconEditMode:false,iconClassOverrides:safeStorage.get('reg-kb-icon-class-overrides-v2',{}),clusterClass:'one',clusterMode:'normal',clusterActive:new Set(),pdfPage:1,pdfTarget:'',favorites:new Set(safeStorage.get('reg-kb-favorites',[])),onlyFavorites:false};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const normalize=v=>String(v??'').toLowerCase().replace(/\s+/g,'');
@@ -3918,7 +4245,7 @@ function decisionGridHTML(r){
     ['持续规则',r.durationRule,DURATION_EXPLANATIONS[r.durationRule]],
     ['空间策略',r.spaceStrategy,SPACE_EXPLANATIONS[r.spaceStrategy]]
   ].filter(x=>x[1]&&x[1]!=='/');
-  return `<div class="decision-grid">${items.map(([k,v,d])=>`<div class="decision-item ${k==='显示义务'?'primary':''}"><span>${esc(k)}</span><b>${highlightRegText(v)}</b>${d?`<p>${highlightRegText(d)}</p>`:''}</div>`).join('')}</div>`;
+  return `<div class="decision-grid">${items.map(([k,v,d])=>`<div class="decision-item ${k==='显示义务'?'primary':''}"${d?` title="${esc(d)}"`:''}><span>${esc(k)}</span><b>${highlightRegText(v)}</b></div>`).join('')}</div>`;
 }
 function relationCardHTML(rel,incoming=false){
   const meta=RELATION_META[rel.relationType]||{label:rel.relationType};
@@ -3941,7 +4268,7 @@ function relationGroupsHTML(r){
 
 function keyPointHTML(r){
   if(isPureControl(r))return `<div class="control-note"><b>具体纯物理操纵件</b><br>本条仅规范物理器件上的标志。屏幕显示义务、持续规则和信息空间策略不适用；控件标识要求请查看上方“综合设计结论”。</div>`;
-  const p=parseKeyPoints(r.keyPoints);const order=['法规效力','规则主题','颜色','关键约束'];
+  const p=parseKeyPoints(r.keyPoints);const order=['规则主题','颜色','关键约束'];
   const rows=order.filter(k=>p[k]).map(k=>{const value=k==='规则主题'?`<div class="topic-tags">${String(p[k]).split('；').map(x=>`<span class="tag topic">${esc(x)}</span>`).join('')}</div>`:highlightRegText(p[k]);return `<div class="keypoint-row"><div class="keypoint-label">${esc(k)}</div><div class="keypoint-value">${value}</div></div>`}).join('');
   return `<div class="info-card keypoints"><div class="keypoint-grid">${rows||`<div class="keypoint-value">${highlightRegText(r.keyPoints||r.original)}</div>`}</div></div>`;
 }
@@ -3980,7 +4307,7 @@ function inlineMoreInfoHTML(r){
   const checkHTML=r.check&&r.check!=='/'?`<ul class="check-list">${r.check.split(/[；。]/).filter(Boolean).map(x=>`<li>${highlightRegText(x)}</li>`).join('')}</ul>`:'<div class="info-card">/</div>';
   return `<details class="detail-more rule-card-more"><summary><b>查看更多规则信息</b><span>关联规则、分类、法规重点与检查要点</span><i>⌄</i></summary><div class="detail-more-body">
     ${relationGroupsHTML(r)}
-    <section class="detail-section"><h4>法规分类信息</h4>${classificationHTML(r)}</section>
+    <section class="detail-section"><h4>分类与责任信息</h4>${classificationHTML(r)}</section>
     <section class="detail-section"><h4>法规重点</h4>${keyPointHTML(r)}</section>
     <section class="detail-section"><h4>设计检查要点</h4>${checkHTML}</section>
     <section class="detail-section"><h4>同类规则</h4><div class="related">${related.map(x=>`<button data-related="${x.id}"><b>${esc(x.name)}</b><br><span>${esc(primarySource(x)?.localLocator||primarySource(x)?.clauseId||'')} · ${esc(x.displayObligation)}</span></button>`).join('')||'暂无同类规则'}</div></section>
@@ -3988,8 +4315,16 @@ function inlineMoreInfoHTML(r){
 }
 function classificationHTML(r){
   const topicHTML=r.ruleTopics?.length?`<div class="topic-tags">${r.ruleTopics.map(x=>`<span class="tag topic">${esc(x)}</span>`).join('')}</div>`:esc(r.ruleTopic||'/');
-  const pairs=[['规则层级',esc(r.ruleLevel||'/')],['适用对象',esc(r.applicableObject||'/')],['法规效力',highlightRegText(r.regulationEffect||'/')],['规则主题',topicHTML,'wide'],['主责岗位',esc(r.owner||'/')],['协同岗位',esc(r.collaborator||'/')],['规定颜色',highlightRegText(r.color||'/')],['关联规则摘要',esc(r.relationSummary||'/'),'wide']];
+  const pairs=[['规则层级',esc(r.ruleLevel||'/')],['适用对象',esc(r.applicableObject||'/')],['规则主题',topicHTML],['主责岗位',esc(r.owner||'/')],['协同岗位',esc(r.collaborator||'/')],['适用阶段',esc(r.applicability||'按法规生效状态执行')],['关联规则摘要',esc(r.relationSummary||'/'),'wide']];
   return `<div class="classification-grid">${pairs.map(([k,v,wide])=>`<div class="kv ${wide||''}"><span>${esc(k)}</span><b>${v}</b></div>`).join('')}</div>`;
+}
+function detailHeaderTagsHTML(r,{mode='rule'}={}){
+  const tags=[];
+  if(mode==='icon'){const cls=indicatorClassTagHTML(r);if(cls)tags.push(cls)}
+  if(r.standardNature)tags.push(`<span class="tag object">${esc(r.standardNature)}</span>`);
+  if(r.regulationEffect&&r.regulationEffect!=='/')tags.push(`<span class="tag duty ${r.regulationEffect==='强制'?'required':'optional'}">${esc(r.regulationEffect)}</span>`);
+  if(r.color&&r.color!=='/'&&r.color!=='未规定')tags.push(`<span class="tag color">${esc(r.color)}</span>`);
+  return `<div class="detail-head-tags">${tags.join('')}</div>`;
 }
 function iconHTML(r,cls=''){return r?.icon?`<img class="${cls}" src="${r.icon}" alt="${esc(r.name)}" loading="lazy" decoding="async">`:`<span class="rule-placeholder">◇</span>`}
 function sourceLabel(s,includeReg=true){const reg=regById(s.regulationId);const local=s.localLocator||[s.clauseId,s.figureId].filter(Boolean).join(' / ')||s.locatorLabel;return `${includeReg&&reg?reg.code+' · ':''}${local}`}
@@ -3997,7 +4332,7 @@ function primarySource(r){return r.sources?.find(s=>s.sourceType==='primary')||r
 function sourceOrder(r){if(Number.isFinite(Number(r?.excelRow)))return Number(r.excelRow);const s=primarySource(r);const nums=((s?.clauseId||s?.locatorLabel||'').match(/\d+/g)||[]).map(Number);return nums.reduce((a,n,i)=>a+n/Math.pow(100,i),0)}
 function ruleRegulations(r){return [...new Set((r.sources||[]).map(s=>s.regulationId))]}
 
-const viewInited={home:false,rules:false,terms:false,regulations:false,icons:false};
+const viewInited={home:false,rules:false,terms:false,regulations:false,icons:false,cluster:false};
 function ensureView(view){
   if(viewInited[view])return;
   if(view==='home')initHome();
@@ -4005,6 +4340,7 @@ function ensureView(view){
   else if(view==='terms')initTerms();
   else if(view==='regulations')initRegulations();
   else if(view==='icons')initIcons();
+  else if(view==='cluster')initCluster();
   viewInited[view]=true;
 }
 function showView(view,{catalog=false}={}){
@@ -4012,13 +4348,13 @@ function showView(view,{catalog=false}={}){
   state.view=view;$$('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${view}`));$$('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
   const main=$('.main');if(main)main.scrollTo({top:0,left:0,behavior:'auto'});
   $('#backToTop')?.classList.remove('visible');
-  if(view==='rules')renderRules();if(view==='icons')renderIcons();if(view==='regulations'&&catalog)showRegCatalog();
+  if(view==='rules')renderRules();if(view==='icons')renderIcons();if(view==='cluster')renderCluster();if(view==='regulations'&&catalog)showRegCatalog();
 }
 $$('[data-view]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view,{catalog:b.dataset.view==='regulations'})));
 document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('#globalSearch').focus()}});
 
 function uniqueRules(get){return [...new Set(LIBRARY_RULES.flatMap(r=>{const v=get(r);return Array.isArray(v)?v:[v]}).filter(Boolean))]}
-function regulationCard(reg,compact=false){const sourceCount=RULE_SOURCES.filter(s=>s.regulationId===reg.id).length;const ruleCount=new Set(RULE_SOURCES.filter(s=>s.regulationId===reg.id).map(s=>s.ruleId)).size;return `<button class="regulation-card" data-open-reg="${reg.id}"><div class="reg-code">${esc(reg.code)}</div><div class="reg-name">${esc(reg.name)}</div><div class="reg-meta"><span class="status-badge">${esc(reg.status)}</span><span class="type-badge">${esc(reg.documentType)}</span><span class="type-badge">${esc(reg.market)}</span></div><div class="reg-foot"><span>${ruleCount} 条设计规则 · ${sourceCount} 项依据</span><b>查看${compact?'':'法规'} →</b></div></button>`}
+function regulationCard(reg,compact=false){const sourceCount=RULE_SOURCES.filter(s=>s.regulationId===reg.id).length;const ruleCount=new Set(RULE_SOURCES.filter(s=>s.regulationId===reg.id).map(s=>s.ruleId)).size;const availability=reg.pdfUrl?'本地全文':(reg.externalUrl?'官方入口':'待补充');return `<button class="regulation-card" data-open-reg="${reg.id}"><div class="reg-code">${esc(reg.code)}</div><div class="reg-name">${esc(reg.name)}</div><div class="reg-meta"><span class="status-badge">${esc(reg.status)}</span><span class="type-badge">${esc(reg.documentType)}</span><span class="type-badge">${esc(reg.market)}</span></div><div class="reg-foot"><span>${ruleCount} 条设计规则 · ${availability}</span><b>查看${compact?'':'法规'} →</b></div></button>`}
 function bindRegCards(root=document){root.querySelectorAll('[data-open-reg]').forEach(b=>b.onclick=()=>openRegulation(b.dataset.openReg))}
 
 function initHome(){
@@ -4029,7 +4365,8 @@ function initHome(){
   $('#sideMeta').innerHTML=`<b>知识库状态</b><br>${REGULATIONS.length} 部法规 · ${LIBRARY_RULES.length} 条规则<br>${SYMBOLS.length} 个图标 · ${RELATIONS.length} 项关联`;
   const quick=['前照灯远光','状态触发必显','持续至状态解除','可选显示','共用空间','红色'];
   $('#quickTags').innerHTML=quick.map(q=>`<button data-q="${q}">${q}</button>`).join('');$('#quickTags').onclick=e=>{if(e.target.dataset.q)runGlobalSearch(e.target.dataset.q)};
-  const domains=uniqueRules(r=>r.domain).map(d=>({name:d,rules:LIBRARY_RULES.filter(r=>r.domain===d)})).sort((a,b)=>b.rules.length-a.rules.length).slice(0,10);
+  const homeHiddenDomains=new Set(['通用规则','附录规范']);
+  const domains=uniqueRules(r=>r.domain).filter(d=>!homeHiddenDomains.has(d)).map(d=>({name:d,rules:LIBRARY_RULES.filter(r=>r.domain===d)})).sort((a,b)=>b.rules.length-a.rules.length).slice(0,10);
   $('#domainGrid').innerHTML=domains.map(d=>`<button class="domain-card" data-domain="${esc(d.name)}"><div class="mini-icons">${d.rules.filter(r=>r.icon).slice(0,3).map(r=>`<img src="${r.icon}" loading="lazy" decoding="async">`).join('')||'<div class="mini-placeholder">规</div>'}</div><b>${esc(d.name)}</b><span>${d.rules.length} 条规则</span></button>`).join('');$('#domainGrid').onclick=e=>{const b=e.target.closest('[data-domain]');if(!b)return;clearFilterState();state.filters.domain.add(b.dataset.domain);showView('rules')};
   const questions=[['哪些状态触发后必须独占持续显示？','preset:critical'],['哪些图标状态触发时必须显示？','preset:required'],['哪些图标可以不显示？','preset:optional'],['哪些规则由视觉组主责？','preset:visual'],['哪些条目不涉及屏幕显示？','preset:noscreen'],['哪些条款明确引用了其他规则？','search:明确引用']];
   $('#questionGrid').innerHTML=questions.map(([t,a])=>`<button class="question-card" data-action="${a}"><span>${t}</span><i>→</i></button>`).join('');
@@ -4047,36 +4384,16 @@ function exactOptions(values,getter,display=v=>v){
 }
 const filterDefs=[
   {
-    key:'displayObligation',label:'显示义务',
-    options:()=>exactOptions(orderedValues(r=>r.displayObligation,['状态触发必显','可选显示；采用即须合规','不涉及屏幕显示','通用设计规则','常驻状态显示']),r=>r.displayObligation,v=>({
-      '可选显示；采用即须合规':'可选显示·采用即合规'
-    }[v]||v))
+    key:'standardNature',label:'标准性质',
+    options:()=>exactOptions(orderedValues(r=>r.standardNature,['强制性国家标准','推荐性国家标准','联合国法规','ISO国际标准']),r=>r.standardNature)
   },
   {
-    key:'regulationEffect',label:'法规效力',
+    key:'regulationEffect',label:'条款约束',
     options:()=>exactOptions(orderedValues(r=>r.regulationEffect,['强制','条件强制','推荐／允许']),r=>r.regulationEffect)
   },
   {
-    key:'durationRule',label:'持续规则',
-    options:()=>exactOptions(orderedValues(r=>r.durationRule,['持续至状态解除（不可取消）','状态有效时可轮显／查看；解除后可消失','状态有效时必须提供','可轮显／查看','始终显示']),r=>r.durationRule,v=>({
-      '持续至状态解除（不可取消）':'持续至解除·不可取消',
-      '状态有效时可轮显／查看；解除后可消失':'可轮显／查看·解除后可消失'
-    }[v]||v))
-  },
-  {
-    key:'spaceStrategy',label:'空间策略',
-    options:()=>[
-      {value:'space-critical',label:'抢占独占（关键状态）',match:r=>['可进入共用空间；激活时抢占独占','共用空间内抢占独占'].includes(r.spaceStrategy)},
-      {value:'space-common',label:'普通共用空间',match:r=>['可进入普通共用空间','普通共用空间'].includes(r.spaceStrategy)},
-      {value:'space-isolation',label:'关键状态槽位隔离',match:r=>r.spaceStrategy==='关键状态槽位隔离'},
-      {value:'space-control',label:'控件上或邻近',match:r=>r.spaceStrategy==='控件上或邻近'},
-      {value:'space-none',label:'不涉及屏幕空间',match:r=>r.spaceStrategy==='不涉及屏幕空间'},
-      {value:'space-dedicated',label:'独立专用空间',match:r=>r.spaceStrategy==='独立专用空间'}
-    ].filter(o=>LIBRARY_RULES.some(o.match))
-  },
-  {
     key:'domain',label:'功能分类',
-    options:()=>exactOptions(orderedValues(r=>r.domain,['灯光','制动','乘员安全','车身开闭','雨刮与洗涤','空调与除雾','动力与能源','变速器','轮胎与车辆状态','商用车功能','通用图标规则','颜色与显示规则','图形构成与位置']),r=>r.domain)
+    options:()=>exactOptions(orderedValues(r=>r.domain,['灯光','制动与底盘','乘员安全','车身开闭','风窗与视野','空调与热管理','动力与能源','变速器','轮胎与车辆状态','智能驾驶','仪表与信息显示','声音与提示','通用规则','附录规范']),r=>r.domain)
   },
   {
     key:'owner',label:'主责岗位',
@@ -4140,7 +4457,7 @@ function renderFilterSummaries(){
   filterDefs.forEach(d=>{const el=document.querySelector(`[data-filter-summary="${d.key}"]`),count=state.filters[d.key]?.size||0;if(el)el.textContent=count?`已选 ${count}`:'全部'});
 }
 function filteredRules(){
-  const q=normalize(state.search||$('#globalSearch').value);let arr=LIBRARY_RULES.filter(r=>{if(state.onlyFavorites&&!state.favorites.has(r.id))return false;if(q&&!ruleHaystack(r).includes(q))return false;return filterDefs.every(d=>filterDefMatches(r,d,state.filters[d.key]))});
+  const q=normalize(state.search||$('#globalSearch').value);let arr=LIBRARY_RULES.filter(r=>{if(state.onlyFavorites&&!state.favorites.has(r.id))return false;if(q&&!ruleHaystack(r).includes(q))return false;if(state.filters.displayObligation.size&&!state.filters.displayObligation.has(r.displayObligation))return false;if(state.filters.durationRule.size&&!state.filters.durationRule.has(r.durationRule))return false;if(state.filters.spaceStrategy.size&&!state.filters.spaceStrategy.has(r.spaceStrategy))return false;return filterDefs.every(d=>filterDefMatches(r,d,state.filters[d.key]))});
   if(state.sort==='name')arr.sort((a,b)=>a.name.localeCompare(b.name,'zh-CN'));
   else if(state.sort==='effect')arr.sort((a,b)=>(a.regulationEffect||'').localeCompare(b.regulationEffect||'','zh-CN')||sourceOrder(a)-sourceOrder(b));
   else if(state.sort==='duty')arr.sort((a,b)=>(a.displayObligation||'').localeCompare(b.displayObligation||'','zh-CN')||sourceOrder(a)-sourceOrder(b));
@@ -4157,19 +4474,21 @@ function renderRules(){
   renderFilterSummaries();
   if(!arr.length){$('#ruleList').innerHTML='<div class="empty-state">没有找到匹配规则，请调整关键词或筛选条件。</div>';return}
   if(!state.selectedRule||!arr.some(r=>r.id===state.selectedRule))state.selectedRule=arr[0].id;
-  $('#ruleList').innerHTML=arr.map(r=>{const s=primarySource(r);return `<article class="rule-item" data-id="${r.id}"><div class="rule-icon">${iconHTML(r)}</div><div class="rule-main"><div class="rule-row"><div><span class="rule-domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</span><h3>${esc(r.name)}</h3></div></div><div class="rule-source-full">${esc(sourceLabel(s))}</div><div class="meta-line">${ruleMetaHTML(r)}</div>${applicabilityNoteHTML(r)}<div class="rule-inline-content"><section class="inline-original"><div class="inline-section-head"><h4>法规原文</h4><button class="source-link" data-open-source="${s?.id||''}">查看原文 ↗</button></div><p>${highlightOriginalText(r.original||s?.sourceText||'')}</p></section><section><h4>综合设计结论</h4>${compactDecisionHTML(r)}</section></div>${inlineMoreInfoHTML(r)}</div></article>`}).join('');
+  $('#ruleList').innerHTML=arr.map(r=>{const s=primarySource(r);return `<article class="rule-item" data-id="${r.id}"><div class="rule-main"><div class="rule-row"><div><span class="rule-domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</span><h3>${esc(r.name)}</h3></div></div><div class="rule-source-full">${esc(sourceLabel(s))}</div><div class="meta-line">${ruleMetaHTML(r)}</div>${applicabilityNoteHTML(r)}<div class="rule-inline-content"><section class="inline-original"><div class="inline-section-head"><h4>法规原文</h4><button class="source-link" data-open-source="${s?.id||''}">查看原文 ↗</button></div><p>${highlightOriginalText(r.original||s?.sourceText||'')}</p></section><section><h4>综合设计结论</h4>${compactDecisionHTML(r)}</section></div>${inlineMoreInfoHTML(r)}</div></article>`}).join('');
   $('#ruleList').onclick=e=>{const src=e.target.closest('[data-open-source]');if(src){e.preventDefault();openSource(src.dataset.openSource);return}const related=e.target.closest('[data-related]');if(related){e.preventDefault();revealRuleInLibrary(related.dataset.related)}};
 }
 function ruleDetailHTML(r,{modal=false,mode='rule'}={}){
   const related=LIBRARY_RULES.filter(x=>x.id!==r.id&&x.domain===r.domain).slice(0,4),fav=state.favorites.has(r.id);
   const checkHTML=r.check&&r.check!=='/'?`<ul class="check-list">${r.check.split(/[；。]/).filter(Boolean).map(x=>`<li>${highlightRegText(x)}</li>`).join('')}</ul>`:'<div class="info-card">/</div>';
   const sourceButtons=(r.sources||[]).map(s=>`<button data-open-source="${s.id}"><span>${esc(sourceLabel(s))}</span><em>${s.sourceType==='primary'?'主要依据':'补充依据'}</em></button>`).join('');
-  return `<div class="detail-content"><div class="detail-top"><div class="detail-icon">${iconHTML(r)}</div><div class="detail-title"><span class="domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</span><h3>${esc(r.name)}</h3><div class="meta-line">${ruleMetaHTML(r)}</div>${applicabilityNoteHTML(r)}<div class="detail-actions"><button class="btn primary" data-open-source="${primarySource(r)?.id||''}">查看主要原文</button><button class="btn fav ${fav?'active':''}" data-fav>${fav?'★ 已收藏':'☆ 收藏'}</button>${modal?'<button class="btn" data-open-library>在规则库中查看 →</button>':''}</div></div></div>
-  <section class="detail-section original-section"><h4>法规原文</h4><div class="all-regulation-sources">${sourceButtons}</div><div class="info-card source original-text">${highlightOriginalText(r.original||primarySource(r)?.sourceText||'')}</div></section>
-  <section class="detail-section decision-section"><h4>综合设计结论</h4>${decisionGridHTML(r)}<div class="decision-basis">该结论综合上方法规原文与下方关联规则生成；条件未成立时，不应把条件关联当作无条件要求。</div></section>
-  <details class="detail-more"><summary><b>查看更多规则信息</b><span>关联规则、分类、法规重点与检查要点</span><i>⌄</i></summary><div class="detail-more-body">
+  const source=primarySource(r),sourceRef=source?sourceLabel(source):'暂无法规定位';
+  const iconBlock=mode==='icon'?`<div class="detail-icon">${iconHTML(r)}</div>`:'';
+  return `<div class="detail-content"><div class="detail-top">${iconBlock}<div class="detail-title"><span class="domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</span><h3>${esc(r.name)}</h3><div class="detail-source-ref">${esc(sourceRef)}</div>${detailHeaderTagsHTML(r,{mode})}${applicabilityNoteHTML(r)}<div class="detail-actions"><button class="btn fav ${fav?'active':''}" data-fav>${fav?'★ 已收藏':'☆ 收藏'}</button>${modal?'<button class="btn" data-open-library>在规则库中查看 →</button>':''}</div></div></div>
+  <details class="detail-disclosure" open><summary><b>法规依据</b><span>${esc(sourceRef)}</span><i>⌄</i></summary><div class="detail-disclosure-body"><div class="all-regulation-sources">${sourceButtons}</div><div class="info-card source original-text">${highlightOriginalText(r.original||source?.sourceText||'')}</div></div></details>
+  <section class="detail-section decision-section"><h4>设计结论</h4>${decisionGridHTML(r)}<p class="detail-caveat">结论按当前条款适用条件生成；条件未成立时，不作为无条件要求。</p></section>
+  <details class="detail-more"><summary><b>完整规则信息</b><span>关联规则、分类、法规重点与检查要点</span><i>⌄</i></summary><div class="detail-more-body">
   ${relationGroupsHTML(r)}
-  <section class="detail-section"><h4>法规分类信息</h4>${classificationHTML(r)}</section>
+  <section class="detail-section"><h4>分类与责任信息</h4>${classificationHTML(r)}</section>
   <section class="detail-section"><h4>法规重点</h4>${keyPointHTML(r)}</section>
   <section class="detail-section"><h4>设计检查要点</h4>${checkHTML}</section>
   <section class="detail-section"><h4>同类规则</h4><div class="related">${related.map(x=>`<button data-related="${x.id}"><b>${esc(x.name)}</b><br><span>${esc(primarySource(x)?.localLocator||primarySource(x)?.clauseId||'')} · ${esc(x.displayObligation)}${x.spaceStrategy&&x.spaceStrategy!=='/'?' · '+esc(x.spaceStrategy):''}</span></button>`).join('')||'暂无同类规则'}</div></section></div></details></div>`;
@@ -4191,7 +4510,7 @@ function initRegulations(){
   $('#regSearch').oninput=renderRegCatalog;$('#regMarket').onchange=renderRegCatalog;$('#regStatus').onchange=renderRegCatalog;$('#backRegCatalog').onclick=showRegCatalog;
   $('#pdfPrev').onclick=()=>{const reg=regById(state.selectedRegulation);state.pdfPage=Math.max(1,state.pdfPage-1);state.pdfTarget='';updateRegulationDetail(reg)};
   $('#pdfNext').onclick=()=>{const reg=regById(state.selectedRegulation);state.pdfPage=Math.min(reg.pageCount,state.pdfPage+1);state.pdfTarget='';updateRegulationDetail(reg)};
-  $('#openPdfTab').onclick=()=>{const reg=regById(state.selectedRegulation);window.open(`${reg.pdfUrl}#page=${state.pdfPage}`,'_blank')};renderRegCatalog();
+  $('#openPdfTab').onclick=()=>{const reg=regById(state.selectedRegulation);window.open(reg.pdfUrl?`${reg.pdfUrl}#page=${state.pdfPage}`:reg.externalUrl,'_blank')};renderRegCatalog();
 }
 function renderRegCatalog(){const q=normalize($('#regSearch')?.value),market=$('#regMarket')?.value,status=$('#regStatus')?.value;const regs=REGULATIONS.filter(r=>(!q||normalize([r.code,r.name,r.documentType,r.market].join(' ')).includes(q))&&(!market||r.market===market)&&(!status||r.status===status));$('#regCatalogGrid').innerHTML=regs.map(r=>regulationCard(r)).join('')||'<div class="empty-state">没有找到匹配法规。</div>';bindRegCards($('#regCatalogGrid'))}
 function showRegCatalog(){$('#regCatalogMode').classList.remove('hidden');$('#regDetailMode').classList.add('hidden');state.selectedRegulation=null}
@@ -4201,50 +4520,135 @@ function openRegulation(id,page=1,target=''){
 function updateRegulationDetail(reg){
   if(!reg)return;const sources=RULE_SOURCES.filter(s=>s.regulationId===reg.id),visibleSources=sources.filter(s=>!HIDDEN_STANDALONE_RULE_IDS.has(s.ruleId)),ruleIds=new Set(visibleSources.map(s=>s.ruleId)),symbols=SYMBOLS.filter(sym=>sym.sourceIds.some(id=>sources.some(s=>s.id===id)));
   $('#regBreadcrumb').textContent=reg.code;$('#regDetailCode').textContent=reg.code;$('#regDetailName').textContent=reg.name;
-  $('#regDetailSummary').innerHTML=`<span class="summary-chip"><b>${ruleIds.size}</b>规则条目</span><span class="summary-chip"><b>${sources.length}</b>条款依据</span><span class="summary-chip"><b>${symbols.length}</b>标准图标</span><span class="summary-chip"><b>${reg.pageCount}</b>PDF页</span>`;
+  $('#regDetailSummary').innerHTML=`<span class="summary-chip"><b>${ruleIds.size}</b>规则条目</span><span class="summary-chip"><b>${sources.length}</b>条款依据</span><span class="summary-chip"><b>${symbols.length}</b>标准图标</span><span class="summary-chip"><b>${reg.pdfUrl?reg.pageCount:'官方'}</b>${reg.pdfUrl?'PDF页':'原文入口'}</span>`;
   $('#regMeta').innerHTML=`<div class="reg-summary">${esc(reg.scope)}</div><div class="meta-list"><div class="meta-row"><span>法规类型</span><b>${esc(reg.documentType)}</b></div><div class="meta-row"><span>市场</span><b>${esc(reg.market)}</b></div><div class="meta-row"><span>发布</span><b>${esc(reg.publishDate)}</b></div><div class="meta-row"><span>实施</span><b>${esc(reg.effectiveDate)}</b></div><div class="meta-row"><span>状态</span><b>${esc(reg.status)}</b></div><div class="meta-row"><span>代替标准</span><b>${esc(reg.supersedes.join('、')||'—')}</b></div></div><div class="info-card source" style="font-size:10px;margin-bottom:15px">${esc(reg.mandatoryNote)}</div>`;
   $('#regToc').innerHTML=reg.toc.map(([t,p])=>`<button data-page="${p}" class="${p===state.pdfPage?'active':''}">${esc(t)}<span style="float:right">${p}</span></button>`).join('');
   $('#regToc').onclick=e=>{const b=e.target.closest('[data-page]');if(!b)return;state.pdfPage=+b.dataset.page;state.pdfTarget=b.textContent.trim();updateRegulationDetail(reg)};
-  $('#pdfTarget').textContent=state.pdfTarget||`${reg.code} · PDF 原文`;$('#pdfFrame').src=`${reg.pdfUrl}#page=${state.pdfPage}&zoom=page-width`;$('#pdfPageBadge').textContent=`第 ${state.pdfPage} / ${reg.pageCount} 页`;
+  $('#pdfTarget').textContent=state.pdfTarget||`${reg.code} · ${reg.pdfUrl?'PDF 原文':'官方原文'}`;
+  if(reg.pdfUrl){$('#pdfFrame').src=`${reg.pdfUrl}#page=${state.pdfPage}&zoom=page-width`;$('#pdfPageBadge').textContent=`第 ${state.pdfPage} / ${reg.pageCount} 页`;$('#pdfPrev').disabled=false;$('#pdfNext').disabled=false;$('#openPdfTab').textContent='新窗口打开 PDF'}
+  else{$('#pdfFrame').srcdoc=`<style>body{margin:0;background:#f5f7fa;font-family:system-ui;color:#18324d;display:grid;place-items:center;height:100vh}.box{text-align:center;max-width:520px;padding:36px}.box b{font-size:22px}.box p{line-height:1.7;color:#60758a}.box a{display:inline-block;padding:11px 18px;border-radius:8px;background:#2378bd;color:white;text-decoration:none}</style><div class="box"><b>${esc(reg.code)}</b><p>${esc(reg.mandatoryNote)}</p><a href="${esc(reg.externalUrl||'#')}" target="_blank">前往官方原文页面 ↗</a></div>`;$('#pdfPageBadge').textContent='官方在线获取';$('#pdfPrev').disabled=true;$('#pdfNext').disabled=true;$('#openPdfTab').textContent='打开官方页面'}
   const assoc=visibleSources.filter(s=>s.pdfPage===state.pdfPage).map(s=>({source:s,rule:ruleById(s.ruleId)}));
   $('#assocList').innerHTML=assoc.slice(0,24).map(({source,rule})=>`<button class="assoc-rule" data-assoc="${rule.id}"><b>${esc(rule.name)}</b><span>${esc(sourceLabel(source,false))} · ${esc(rule.displayObligation)}${rule.durationRule&&rule.durationRule!=='/'?' · '+esc(rule.durationRule):''}${rule.spaceStrategy&&rule.spaceStrategy!=='/'?' · '+esc(rule.spaceStrategy):''}</span></button>`).join('')||'<div class="empty-state" style="padding:20px 5px">本页暂无结构化规则条目。</div>';
   $$('#assocList [data-assoc]').forEach(b=>b.onclick=()=>openRuleModal(b.dataset.assoc,'rule'));
 }
 function openSource(id){const s=sourceById(id);if(!s)return;const rule=ruleById(s.ruleId);openRegulation(s.regulationId,s.pdfPage,`定位：${sourceLabel(s,false)} · ${rule?.name||''}`)}
 
+/* Project lamp-position policy, separate from legal force.
+   Class one is the conservative dedicated-slot baseline for the four signals
+   specially constrained by GB 4094—2016 4.1.13. Required status signals use
+   reusable fixed slots (class two); optional/reference signals use dynamic
+   slots (class three). Pure controls are intentionally unclassified. */
+const PROJECT_DEDICATED_INDICATORS=new Set(['rule-002','rule-010','rule-020','rule-028']);
+function automaticIndicatorClass(item){
+  const r=item?.ruleIds?ruleById(item.ruleIds[0]):item,id=r?.id;
+  if(!r||isPureControl(r)||r.displayObligation==='不涉及屏幕显示')return '';
+  if(PROJECT_DEDICATED_INDICATORS.has(id))return 'one';
+  if(r.displayObligation==='状态触发必显'||r.displayObligation==='常驻状态显示'||r.displayObligation==='识别有效时显示')return 'two';
+  if(r.displayObligation?.startsWith('可选显示'))return 'three';
+  return '';
+}
+function indicatorClass(item){
+  const r=item?.ruleIds?ruleById(item.ruleIds[0]):item,id=r?.id;
+  return id&&Object.prototype.hasOwnProperty.call(state.iconClassOverrides,id)?state.iconClassOverrides[id]:automaticIndicatorClass(r);
+}
+function automaticIndicatorClassLabel(item){return {one:'一类指示灯',two:'二类指示灯',three:'三类指示灯'}[automaticIndicatorClass(item)]||'不分类'}
+function indicatorClassLabel(item){return {one:'一类指示灯',two:'二类指示灯',three:'三类指示灯'}[indicatorClass(item)]||''}
+function indicatorClassTagHTML(item){const label=indicatorClassLabel(item);return label?`<span class="tag duty ${indicatorClass(item)==='one'?'required':indicatorClass(item)==='two'?'always':'optional'}">${label}</span>`:''}
+function iconClassEditorHTML(s){
+  if(!state.iconEditMode)return '';
+  const r=ruleById(s.ruleIds[0]),manual=Object.prototype.hasOwnProperty.call(state.iconClassOverrides,r.id),value=manual?state.iconClassOverrides[r.id]:'auto';
+  return `<label class="icon-class-editor-label">自定义分类（优先）</label><select class="icon-class-editor" data-edit-icon-class="${r.id}"><option value="auto" ${value==='auto'?'selected':''}>使用项目分类（${automaticIndicatorClassLabel(r)}）</option><option value="one" ${value==='one'?'selected':''}>一类指示灯</option><option value="two" ${value==='two'?'selected':''}>二类指示灯</option><option value="three" ${value==='three'?'selected':''}>三类指示灯</option><option value="" ${manual&&value===''?'selected':''}>不分类</option></select>`;
+}
+function clusterSymbols(classId){return SYMBOLS.filter(s=>indicatorClass(s)===classId)}
+const CLUSTER_REGION_ORDER={
+  /* Slot order is locked to IMG_6233.JPG. null means the reference has a lamp
+     at this exact position, but the current regulated icon library has no
+     verified matching asset. Never replace a null with a similar-looking icon. */
+  topLeft:['rule-046',null,'rule-005','rule-004','rule-002','rule-007','rule-097',null],
+  topRight:[null,null,'rule-037',null,null,'rule-028',null,null],
+  left:[
+    'rule-049','rule-022',
+    'rule-103','rule-024',
+    null,null,
+    null,null,
+    'rule-023',null,
+    'rule-042',null,
+    null,null,
+    'rule-019','rule-096'
+  ],
+  right:[
+    null,null,
+    null,'rule-020',
+    null,'rule-036',
+    null,null,
+    null,null,
+    null,null,
+    null,null,
+    null,null
+  ],
+  bottom:[]
+};
+function clusterSymbolByRule(id){return SYMBOLS.find(s=>s.ruleIds[0]===id)}
+function clusterSlotHTML(s,active=true){
+  if(!s)return '<div class="cluster-lamp-slot empty"></div>';
+  const r=ruleById(s.ruleIds[0]),source=primarySource(r),info=[r.name,indicatorClassLabel(r)||'未分类',sourceLabel(source),`颜色：${r.color||'未规定'}`].join('｜');return `<div class="cluster-lamp-slot ${active?'active':''}" role="button" tabindex="0" data-cluster-rule="${r.id}" data-color="${esc(r.color||'')}" data-info="${esc(info)}"><img src="${s.icon}" alt="${esc(r.name)}"></div>`;
+}
+function renderCluster(){
+  const showAll=state.clusterMode!=='normal',renderRegion=(ids,target)=>{$(target).innerHTML=ids.map(id=>{const s=clusterSymbolByRule(id);return clusterSlotHTML(s,showAll||state.clusterActive.has(id))}).join('')};
+  renderRegion(CLUSTER_REGION_ORDER.topLeft,'#clusterClassOne');renderRegion(CLUSTER_REGION_ORDER.topRight,'#clusterClassTwoTop');renderRegion(CLUSTER_REGION_ORDER.left,'#clusterClassThree');renderRegion(CLUSTER_REGION_ORDER.right,'#clusterClassTwo');renderRegion(CLUSTER_REGION_ORDER.bottom,'#clusterClassThreeBottom');
+  const total=Object.values(CLUSTER_REGION_ORDER).flat().filter(Boolean).length+1;$('#clusterActiveCount').textContent=showAll?`${total} 个已收录灯位`:`${state.clusterActive.size} 个灯已点亮`;
+  const screen=$('#clusterScreen');screen.className=`cluster-screen mode-${state.clusterMode}`;$$('.cluster-display-modes [data-cluster-mode]').forEach(b=>b.classList.toggle('active',b.dataset.clusterMode===state.clusterMode));
+}
+function initCluster(){
+  state.clusterActive=new Set(['rule-005','rule-004','rule-097','rule-098','rule-032','rule-037']);
+  $$('.cluster-display-modes [data-cluster-mode]').forEach(b=>b.onclick=()=>{state.clusterMode=b.dataset.clusterMode;renderCluster()});
+  $('#clusterScreen').onclick=e=>{const lamp=e.target.closest('[data-cluster-rule]');if(lamp)openRuleModal(lamp.dataset.clusterRule,'icon')};
+  $('#clusterScreen').onkeydown=e=>{const lamp=e.target.closest('[data-cluster-rule]');if(lamp&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openRuleModal(lamp.dataset.clusterRule,'icon')}};
+  $('#clusterClock').textContent='18:20';renderCluster();
+}
+function initIconClassOverview(){
+  const classes=[
+    {id:'one',css:'class-one',title:'一类指示灯',note:'点亮时，该灯位不可被其他指示灯占用'},
+    {id:'two',css:'class-two',title:'二类指示灯',note:'固定灯位；不亮时可被其他灯占用'},
+    {id:'three',css:'class-three',title:'三类指示灯',note:'动态灯位；前方有空位时向前补位'}
+  ];
+  const root=$('#iconClassOverview');if(!root)return;
+  root.innerHTML=classes.map(c=>`<button class="decision-preset ${c.css}" data-icon-class="${c.id}" type="button"><span>${c.title}</span><strong>${SYMBOLS.filter(s=>indicatorClass(s)===c.id).length}</strong><small>${c.note}</small></button>`).join('');
+  root.onclick=e=>{const b=e.target.closest('[data-icon-class]');if(!b)return;const next=state.iconClass===b.dataset.iconClass?'':b.dataset.iconClass;state.iconClass=next;const search=$('#iconSearch');if(search)search.value='';['iconRegulation','iconColor','iconDomain'].forEach(id=>{const el=$(`#${id}`);if(el)el.value=''});renderIcons()};
+}
 function initIcons(){
+  initIconClassOverview();
+  $('#iconEditMode').onclick=()=>{state.iconEditMode=!state.iconEditMode;renderIcons()};
   const options=(vals,label)=>`<option value="">${label}</option>`+vals.map(v=>`<option>${esc(v)}</option>`).join('');
   $('#iconRegulation').innerHTML='<option value="">全部法规来源</option>'+REGULATIONS.map(r=>`<option value="${r.id}">${esc(r.code)}</option>`).join('');
-  $('#iconDisplay').innerHTML=options([...new Set(SYMBOLS.map(s=>s.displayObligation))],'全部显示义务');
-  $('#iconDuration').innerHTML=options([...new Set(SYMBOLS.map(s=>s.durationRule).filter(v=>v&&v!=='/'))],'全部持续规则');
-  $('#iconSpace').innerHTML=options([...new Set(SYMBOLS.map(s=>s.spaceStrategy).filter(v=>v&&v!=='/'))],'全部空间策略');
   $('#iconColor').innerHTML=options([...new Set(SYMBOLS.map(s=>s.color).filter(v=>v&&v!=='/'))],'全部颜色');
   $('#iconDomain').innerHTML=options([...new Set(SYMBOLS.map(s=>s.domain))],'全部功能');
   const dropdownDefs=[
     ['iconRegulation','法规来源',(s,v)=>ruleRegulations(ruleById(s.ruleIds[0])).includes(v)],
-    ['iconDisplay','显示义务',(s,v)=>s.displayObligation===v],
-    ['iconDuration','持续规则',(s,v)=>s.durationRule===v],
-    ['iconSpace','空间策略',(s,v)=>s.spaceStrategy===v],
     ['iconColor','颜色',(s,v)=>s.color===v],
     ['iconDomain','功能分类',(s,v)=>s.domain===v]
   ];
   $('#iconFilterDropdowns').innerHTML=dropdownDefs.map(([id,label,match])=>{const select=$(`#${id}`),items=[...select.options].map(o=>{const count=o.value?SYMBOLS.filter(s=>match(s,o.value)).length:SYMBOLS.length;return `<button class="icon-filter-option ${o.value?'':'active'}" type="button" data-icon-filter="${id}" data-value="${esc(o.value)}"><span>${esc(o.textContent)}</span><em>${count}</em></button>`}).join('');return `<details class="icon-filter-dropdown" data-icon-dropdown="${id}"><summary><span>${esc(label)}</span><em data-icon-filter-summary="${id}">全部</em><i>⌄</i></summary><div class="icon-filter-options">${items}</div></details>`}).join('');
   $$('.icon-filter-dropdown').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)$$('.icon-filter-dropdown').forEach(other=>{if(other!==d)other.open=false})}));
   $('#iconFilterDropdowns').onclick=e=>{const b=e.target.closest('[data-icon-filter]');if(!b)return;const select=$(`#${b.dataset.iconFilter}`);select.value=b.dataset.value;b.closest('details').open=false;renderIcons()};
-  ['iconSearch','iconRegulation','iconDisplay','iconDuration','iconSpace','iconColor','iconDomain'].forEach(id=>{const el=$(`#${id}`);if(el)el.addEventListener(id==='iconSearch'?'input':'change',renderIcons)});renderIcons();
+  ['iconSearch','iconRegulation','iconColor','iconDomain'].forEach(id=>{const el=$(`#${id}`);if(el)el.addEventListener(id==='iconSearch'?'input':'change',renderIcons)});renderIcons();
   $$('.icon-view-toggle [data-icon-view]').forEach(b=>b.onclick=()=>{state.iconView=b.dataset.iconView;safeStorage.set('reg-kb-icon-view',state.iconView);renderIcons()});
 }
 function renderIconFilterState(){
   $$('.icon-filter-dropdown').forEach(d=>{const id=d.dataset.iconDropdown,select=$(`#${id}`),selected=select?.options[select.selectedIndex],summary=d.querySelector(`[data-icon-filter-summary="${id}"]`);if(summary)summary.textContent=select?.value?selected.textContent.replace(/^全部/,''):'全部';d.querySelectorAll('[data-icon-filter]').forEach(b=>b.classList.toggle('active',b.dataset.value===select?.value))});
 }
 function renderIcons(){
-  const q=normalize($('#iconSearch')?.value),regId=$('#iconRegulation')?.value,display=$('#iconDisplay')?.value,duration=$('#iconDuration')?.value,space=$('#iconSpace')?.value,color=$('#iconColor')?.value,domain=$('#iconDomain')?.value;
-  const arr=SYMBOLS.filter(s=>{const rule=ruleById(s.ruleIds[0]),regs=ruleRegulations(rule);return(!q||ruleHaystack(rule).includes(q))&&(!regId||regs.includes(regId))&&(!display||s.displayObligation===display)&&(!duration||s.durationRule===duration)&&(!space||s.spaceStrategy===space)&&(!color||s.color===color)&&(!domain||s.domain===domain)});
+  const q=normalize($('#iconSearch')?.value),regId=$('#iconRegulation')?.value,color=$('#iconColor')?.value,domain=$('#iconDomain')?.value;
+  const arr=SYMBOLS.filter(s=>{const rule=ruleById(s.ruleIds[0]),regs=ruleRegulations(rule);return(!state.iconClass||indicatorClass(s)===state.iconClass)&&(!q||ruleHaystack(rule).includes(q))&&(!regId||regs.includes(regId))&&(!color||s.color===color)&&(!domain||s.domain===domain)});
   $('#iconCountPill').textContent=`${arr.length} / ${SYMBOLS.length} 个图标`;
+  const editButton=$('#iconEditMode');if(editButton){editButton.classList.toggle('active',state.iconEditMode);editButton.textContent=state.iconEditMode?'完成编辑':'编辑分类'}
+  $$('#iconClassOverview [data-icon-class]').forEach(b=>b.classList.toggle('active',b.dataset.iconClass===state.iconClass));
   renderIconFilterState();
   const grid=$('#iconGrid');grid.classList.toggle('large-mode',state.iconView==='large');grid.classList.toggle('small-mode',state.iconView!=='large');
   $$('.icon-view-toggle [data-icon-view]').forEach(b=>b.classList.toggle('active',b.dataset.iconView===state.iconView));
-  grid.innerHTML=arr.map(s=>{const r=ruleById(s.ruleIds[0]),source=primarySource(r),relations=outgoingRelations(r.id);if(state.iconView==='large')return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><div class="icon-large-content"><div class="icon-large-domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</div><h3>${esc(s.name)}</h3><div class="icon-large-source">${esc(sourceLabel(source))}</div><div class="meta-line">${ruleMetaHTML(r)}</div><div class="icon-large-facts"><div class="icon-large-fact"><span>法规效力</span><b>${esc(r.regulationEffect||'—')}</b></div><div class="icon-large-fact"><span>显示颜色</span><b>${esc(r.color||'—')}</b></div><div class="icon-large-fact"><span>持续规则</span><b>${esc(r.durationRule||'—')}</b></div><div class="icon-large-fact"><span>主责岗位</span><b>${esc(r.owner||'—')}</b></div></div><p class="icon-large-original">${highlightRegText(r.original||source?.sourceText||'暂无法规原文')}</p><p class="icon-large-summary">${highlightRegText(r.check&&r.check!=='/'?r.check:'暂无补充检查要点')}</p><div class="icon-large-action">查看完整详情 · ${relations.length} 项关联 →</div></div></button>`;return `<button class="icon-card" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><h3>${esc(s.name)}</h3><div class="meta-line">${ruleMetaHTML(r)}</div><div class="icon-source">${esc(sourceLabel(source))} · ${relations.length} 项关联</div></button>`}).join('')||'<div class="empty-state">没有找到匹配图标。</div>';$$('[data-symbol]').forEach(b=>b.onclick=()=>openIconModal(b.dataset.symbol));
+  grid.innerHTML=arr.map(s=>{const r=ruleById(s.ruleIds[0]),source=primarySource(r),relations=outgoingRelations(r.id),classTag=indicatorClassTagHTML(s),editor=iconClassEditorHTML(s),editing=state.iconEditMode?' editing':'';if(state.iconView==='large')return `<button class="icon-card${editing}" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><div class="icon-large-content"><div class="icon-large-domain">${esc(r.domain)} · ${esc(r.ruleLevel)}</div><h3>${esc(s.name)}</h3><div class="icon-large-source">${esc(sourceLabel(source))}</div><div class="meta-line">${classTag}${ruleMetaHTML(r)}</div><div class="icon-large-facts"><div class="icon-large-fact"><span>标准性质</span><b>${esc(r.standardNature||'—')}</b></div><div class="icon-large-fact"><span>条款约束</span><b>${esc(r.regulationEffect||'—')}</b></div><div class="icon-large-fact"><span>显示颜色</span><b>${esc(r.color||'—')}</b></div><div class="icon-large-fact"><span>主责岗位</span><b>${esc(r.owner||'—')}</b></div></div><p class="icon-large-original">${highlightRegText(r.original||source?.sourceText||'暂无法规原文')}</p><p class="icon-large-summary">${highlightRegText(r.check&&r.check!=='/'?r.check:'暂无补充检查要点')}</p><div class="icon-large-action">查看完整详情 · ${relations.length} 项关联 →</div>${editor}</div></button>`;return `<button class="icon-card${editing}" data-symbol="${s.id}"><div class="icon-image"><img src="${s.icon}" alt="${esc(s.name)}" loading="lazy" decoding="async"></div><h3>${esc(s.name)}</h3><div class="meta-line">${classTag}${ruleMetaHTML(r)}</div><div class="icon-source">${esc(sourceLabel(source))} · ${relations.length} 项关联</div>${editor}</button>`}).join('')||'<div class="empty-state">没有找到匹配图标。</div>';
+  $$('[data-edit-icon-class]').forEach(select=>select.onchange=e=>{e.stopPropagation();const id=select.dataset.editIconClass;if(select.value==='auto')delete state.iconClassOverrides[id];else state.iconClassOverrides[id]=select.value;safeStorage.set('reg-kb-icon-class-overrides-v2',state.iconClassOverrides);initIconClassOverview();renderIcons();if(viewInited.cluster)renderCluster();toast('自定义分类已保存并优先采用')});
+  $$('[data-symbol]').forEach(b=>b.onclick=e=>{if(state.iconEditMode||e.target.closest('[data-edit-icon-class]'))return;openIconModal(b.dataset.symbol)});
 }
 function openRuleModal(ruleId,mode='rule'){const r=ruleById(ruleId);if(!r)return;$('#modalTitle').textContent=mode==='icon'?'标准图标详情':'规则条目详情';const root=$('#modalBody');root.innerHTML=`<div class="modal-rule-detail">${ruleDetailHTML(r,{modal:true,mode})}</div>`;$('#iconModal').classList.remove('hidden');bindRuleDetail(root,r,{modal:true,mode})}
 function openIconModal(id){
@@ -4253,62 +4657,30 @@ function openIconModal(id){
 function closeModal(){$('#iconModal').classList.add('hidden')}$('#closeModal').onclick=closeModal;$('#iconModal').onclick=e=>{if(e.target.id==='iconModal')closeModal()};
 
 function initTerms(){
-  const count=(field,value)=>LIBRARY_RULES.filter(r=>Array.isArray(r[field])?r[field].includes(value):r[field]===value).length;
-  const relCount=t=>RELATIONS.filter(r=>r.relationType===t).length;
   const sections=[
-    {title:'快速上手',type:'internal',badge:'推荐查询顺序',items:[
-      ['1｜显示义务','先判断图标或规则是否需要进入设计：状态触发必显、可选显示、不涉及屏幕或通用设计规则。'],
-      ['2｜法规效力','再确认要求的约束程度：强制、条件强制或推荐／允许。'],
-      ['3｜持续规则','判断显示后多久可以消失，是否可以轮显或必须持续至状态解除。'],
-      ['4｜空间策略','判断是否可以进入普通共用空间，或触发后需要抢占独占。'],
-      ['5｜功能分类','按灯光、制动、乘员安全等业务功能快速收窄结果。'],
-      ['6｜主责岗位','按交互、视觉、动效或3D岗位定位需要关注的规则。']
+    {title:'三个判断',type:'internal',badge:'核心流程',items:[
+      ['1｜要不要显示','先看“显示义务”：触发必显，还是可选显示。'],
+      ['2｜显示多久','再看“持续规则”：可消失、可轮显，还是必须持续到状态解除。'],
+      ['3｜放在哪里','最后看“空间策略”：普通共用、激活时独占，或使用专用灯位。']
     ]},
-    {title:'显示义务',type:'internal',badge:'要不要显示',items:[
-      ['状态触发必显',`${count('displayObligation','状态触发必显')} 条。功能已装备且状态激活时必须提供对应信号。`],
-      ['可选显示·采用即合规',`${count('displayObligation','可选显示；采用即须合规')} 条。可以不显示；一旦采用，图形、颜色及关联要求必须合规。`],
-      ['不涉及屏幕显示',`${count('displayObligation','不涉及屏幕显示')} 条。仅规范纯物理操纵件标识。`],
-      ['通用设计规则',`${count('displayObligation','通用设计规则')} 条。横向规则或附录原则，不对应单一图标的显示义务。`],
-      ['常驻状态显示','为未来法规预留；当前GB 4094—2016没有明确实例。']
+    {title:'三类指示灯',type:'internal',badge:'项目灯位策略',items:[
+      ['一类','点亮时，该灯位不可被其他指示灯占用。'],
+      ['二类','固定灯位；不亮时可被其他指示灯占用。'],
+      ['三类','动态灯位；前方出现空位时向前补位。']
     ]},
-    {title:'法规效力',type:'internal',badge:'必须做到什么程度',items:[
-      ['强制',`${count('regulationEffect','强制')} 条。适用条件成立时必须满足法规要求。`],
-      ['条件强制',`${count('regulationEffect','条件强制')} 条。可以不采用；一旦采用必须符合相应规定。`],
-      ['推荐／允许',`${count('regulationEffect','推荐／允许')} 条。法规建议或明确允许的设计方式。`]
+    {title:'两个法规概念',type:'official',badge:'不要混淆',items:[
+      ['标准性质','说明文件本身属于强制性国家标准、推荐性国家标准或联合国法规。'],
+      ['条款约束','说明当前具体条款是强制、条件强制，还是推荐／允许。']
     ]},
-    {title:'持续规则',type:'internal',badge:'显示多久',items:Object.entries(DURATION_EXPLANATIONS).map(([k,v])=>[k,`${count('durationRule',k)} 条。${v}`])},
-    {title:'空间策略',type:'internal',badge:'放在哪里',items:[
-      ['普通共用空间',`${LIBRARY_RULES.filter(r=>['可进入普通共用空间','普通共用空间'].includes(r.spaceStrategy)).length} 条。普通状态可共用显示区域，多项激活时按轮显或查看规则处理。`],
-      ['抢占独占（关键状态）',`${LIBRARY_RULES.filter(r=>['可进入共用空间；激活时抢占独占','共用空间内抢占独占'].includes(r.spaceStrategy)).length} 条。关键状态进入共用空间后替换其他信息。`],
-      ['关键状态槽位隔离',`${count('spaceStrategy','关键状态槽位隔离')} 条。四类关键状态不得彼此设置在同一共用空间。`],
-      ['控件上或邻近',`${count('spaceStrategy','控件上或邻近')} 条。标识位于对应操纵件上或邻近。`],
-      ['不涉及屏幕空间',`${count('spaceStrategy','不涉及屏幕空间')} 条。纯物理操纵件不进入屏幕信息空间。`],
-      ['独立专用空间','为未来法规预留；当前法规没有明确要求某个状态永久占用专用物理位置。']
-    ]},
-    {title:'法规关联关系',type:'internal',badge:`${RELATIONS.length} 项结构化关联`,items:[
-      ['法规明确引用',`${relCount('明确引用')} 项。原文直接写明应符合、遵从或按照另一条款。`],
-      ['图形复用／替代',`${relCount('图形复用／替代')+relCount('图形组合')+relCount('图形概括／替代')} 项。直接使用、组合或优先采用另一条款的图形。`],
-      ['条件触发关联',`${relCount('条件触发关联')} 项。仅在进入共用空间、采用组合方案等条件成立时适用。`],
-      ['通用规则适用',`${relCount('通用规则适用')} 项。由法规章节结构继承，并非当前条款逐字重复。`],
-      ['外部标准引用',`${relCount('外部标准引用')} 项。目标为ISO、IEC等外部标准。`]
-    ]},
-    {title:'法规术语与关键状态',type:'official',badge:'GB 4094—2016',items:[
-      ['操纵件 control','驾驶员手动操作，用于改变汽车或某个装置工作状态或功能的构件。'],
-      ['指示器 indicator','用刻度值、数字显示等物理特性幅度显示汽车及部件工作状况的装置。'],
-      ['信号装置 tell-tale','点亮时表示装置激活、功能或条件正常／失效，或者某种功能故障的光信号。'],
-      ['共用空间 common space','可以不同步显示两种或多种信息功能的区域。'],
-      ['四类关键状态','制动系统故障、前照灯远光、转向信号灯和安全带警报不得彼此设置在同一共用空间；若进入共用空间，显示时抢占其他信息，状态解除前不可取消。']
-    ]},
-    {title:'使用边界',type:'internal',badge:'避免过度解读',items:[
-      ['直接规定与关联分开','本条原文、明确引用、条件适用和通用继承分别展示。'],
-      ['条件不可无条件化','只有适用条件成立时，关联规则才参与综合设计结论。'],
-      ['独占不等于永久专位','独占表示激活期间独占共用空间，不代表法规要求永久预留固定物理槽位。'],
-      ['跨法规综合判断','同一图标在其他法规中可能有更严格要求，最终结论应按全部适用法规综合。']
+    {title:'使用边界',type:'internal',badge:'最终核对',items:[
+      ['原文优先','先读法规原文，再使用系统生成的设计结论。'],
+      ['条件成立才适用','带条件的关联规则不能当作无条件要求。'],
+      ['自定义分类优先','图标库中手动保存的一／二／三类分类优先于项目默认值。']
     ]}
   ];
   const renderSection=(s,extra='')=>`<section class="term-section ${s.type} ${extra}"><h3>${esc(s.title)}<span class="${s.type==='official'?'official-badge':'internal-badge'}">${esc(s.badge)}</span></h3><div class="term-list">${s.items.map(([k,v])=>`<div class="term-item"><b>${esc(k)}</b><p>${highlightRegText(v)}</p></div>`).join('')}</div></section>`;
   const [quick,...reference]=sections;
-  $('#termsGrid').innerHTML=renderSection(quick,'quick-start-section')+`<details class="guide-reference"><summary><div>详细术语与判断依据<br><span>按需查看显示义务、法规效力、持续规则、空间策略和法规术语</span></div></summary><div class="guide-reference-grid">${reference.map(s=>renderSection(s)).join('')}</div></details>`;
+  $('#termsGrid').innerHTML=renderSection(quick,'quick-start-section')+`<details class="guide-reference"><summary><div>补充速查<br><span>三类灯位、法规概念和使用边界</span></div></summary><div class="guide-reference-grid">${reference.map(s=>renderSection(s)).join('')}</div></details>`;
 }
 const mainScroller=$('.main'),backToTop=$('#backToTop');
 if(mainScroller&&backToTop){
